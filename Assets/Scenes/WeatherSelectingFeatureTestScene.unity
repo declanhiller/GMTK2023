@@ -336,6 +336,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62f49e79d25e74cf9868d615181aeda8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weatherData: {fileID: 11400000, guid: 2c0c39fc9da0a46bf821855accaabf79, type: 2}
 --- !u!114 &411291117
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -600,7 +601,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Button
+  m_text: Flood
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -765,8 +766,9 @@ GameObject:
   - component: {fileID: 1060342883}
   - component: {fileID: 1060342882}
   - component: {fileID: 1060342881}
+  - component: {fileID: 1060342884}
   m_Layer: 5
-  m_Name: Hurricane (2)
+  m_Name: Flood
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -836,7 +838,20 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1060342882}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 411291116}
+        m_TargetAssemblyTypeName: WeatherEvents.WeatherController, Assembly-CSharp
+        m_MethodName: ActivateWeatherEvent
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1060342884}
+          m_ObjectArgumentAssemblyTypeName: WeatherEvents.WeatherEventDataPasser,
+            Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1060342882
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -875,6 +890,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1060342879}
   m_CullTransparentMesh: 1
+--- !u!114 &1060342884
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1060342879}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 946dbda10ba54902be01f2fae909692e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weatherEvent: 0
+  button: {fileID: 0}
 --- !u!1 &1069193361
 GameObject:
   m_ObjectHideFlags: 0
@@ -1010,7 +1039,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Button
+  m_text: Dust Bowl
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1182,7 +1211,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Button
+  m_text: Tornado
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1347,8 +1376,9 @@ GameObject:
   - component: {fileID: 1681456326}
   - component: {fileID: 1681456325}
   - component: {fileID: 1681456324}
+  - component: {fileID: 1681456327}
   m_Layer: 5
-  m_Name: Hurricane
+  m_Name: DustBowl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1418,7 +1448,20 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1681456325}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 411291116}
+        m_TargetAssemblyTypeName: WeatherEvents.WeatherController, Assembly-CSharp
+        m_MethodName: ActivateWeatherEvent
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1681456327}
+          m_ObjectArgumentAssemblyTypeName: WeatherEvents.WeatherEventDataPasser,
+            Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1681456325
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1457,6 +1500,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1681456322}
   m_CullTransparentMesh: 1
+--- !u!114 &1681456327
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1681456322}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 946dbda10ba54902be01f2fae909692e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weatherEvent: 0
+  button: {fileID: 1681456324}
 --- !u!1 &1873863089
 GameObject:
   m_ObjectHideFlags: 0
@@ -1504,9 +1561,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1969967430}
   - component: {fileID: 1969967431}
+  - component: {fileID: 1969967432}
   m_Layer: 5
   m_Name: Slider
-  m_TagString: Untagged
+  m_TagString: RageBar
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1573,7 +1631,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1460876585}
   m_FillRect: {fileID: 1051641261}
   m_HandleRect: {fileID: 1460876584}
@@ -1585,6 +1643,19 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1969967432
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1969967429}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3544dfa6bb19418db1dd15eb145c129a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxNumberOfRagePoints: 500
 --- !u!1 &2031866019
 GameObject:
   m_ObjectHideFlags: 0
@@ -1597,8 +1668,9 @@ GameObject:
   - component: {fileID: 2031866023}
   - component: {fileID: 2031866022}
   - component: {fileID: 2031866021}
+  - component: {fileID: 2031866024}
   m_Layer: 5
-  m_Name: Hurricane (1)
+  m_Name: Tornado
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1668,7 +1740,20 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2031866022}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 411291116}
+        m_TargetAssemblyTypeName: WeatherEvents.WeatherController, Assembly-CSharp
+        m_MethodName: ActivateWeatherEvent
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 2031866024}
+          m_ObjectArgumentAssemblyTypeName: WeatherEvents.WeatherEventDataPasser,
+            Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2031866022
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1707,3 +1792,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2031866019}
   m_CullTransparentMesh: 1
+--- !u!114 &2031866024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2031866019}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 946dbda10ba54902be01f2fae909692e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weatherEvent: 1
+  button: {fileID: 2031866021}
