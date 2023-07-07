@@ -15,6 +15,7 @@ namespace WeatherEvents {
             float totalTime = _timer._totalDuration;
             //use this to change cooldown
             float percentageOfCoolDownTime = remainingTime / totalTime;
+            
         }
     }
 }

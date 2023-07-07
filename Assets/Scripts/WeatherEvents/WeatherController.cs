@@ -24,10 +24,6 @@ namespace WeatherEvents {
             }
         }
 
-        public void TestButton(WeatherEvent evt) {
-            
-        }
-
         private float GetCooldownTime(WeatherEvent weatherEvent) {
             switch (weatherEvent) {
                 case WeatherEvent.DustBowl:
