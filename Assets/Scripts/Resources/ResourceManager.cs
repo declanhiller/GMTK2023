@@ -49,13 +49,13 @@ public class ResourceManager : MonoBehaviour
     public void WoodDrop()
     {
         wood -= dropWoodAmount;
-        woodDisplay.text = wood.ToString();
+        //woodDisplay.text = wood.ToString();
     }
 
     public void FoodDrop()
     {
         food -= dropFoodAmount;
-        foodDisplay.text = food.ToString();
+        //foodDisplay.text = food.ToString();
     }
 
     public void FoodChange(int foodAmount)
@@ -67,6 +67,7 @@ public class ResourceManager : MonoBehaviour
     public void WoodChange(int woodAmount)
     {
         wood += woodAmount;
+        Debug.Log("wood:" + wood);
         //woodDisplay.text = wood.ToString();
     }
 

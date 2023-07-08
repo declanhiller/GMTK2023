@@ -11,7 +11,7 @@ namespace MapScripts {
         public Map map;
 
         //example variables
-        public bool isExcavated = true;
+        public bool isExcavated;
         private bool occupied;
 
         private int foodAmount;
@@ -24,6 +24,7 @@ namespace MapScripts {
 
         public void onClick()
         {
+            Debug.Log(cellPosition);
             if (isExcavated)
             {
 
