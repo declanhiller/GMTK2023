@@ -37,7 +37,9 @@ public class PlayerController : MonoBehaviour {
     }
 
     public void OnClick(InputAction.CallbackContext context) {
-        Debug.Log(_mousePosition);
+        _mousePosition = _mainCamera.ScreenToWorldPoint(
+            Keybinds.Player.MousePosition.ReadValue<Vector2>());
+        map.ClickCell(_mousePosition);
     }
 
     // Update is called once per frame

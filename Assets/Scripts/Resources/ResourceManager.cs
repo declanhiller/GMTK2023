@@ -36,6 +36,8 @@ public class ResourceManager : MonoBehaviour
         Timer woodTimer = new Timer(dropWoodWait, this, WoodDrop);
         Timer foodTimer = new Timer(dropFoodWait, this, FoodDrop);
         Timer populationTimer = new Timer(populateWait, this, IncreasePopulation);
+        if (instance == null) instance = this;
+        else Destroy(gameObject);
     }
 
     private void Update()
@@ -54,6 +56,18 @@ public class ResourceManager : MonoBehaviour
     {
         food -= dropFoodAmount;
         foodDisplay.text = food.ToString();
+    }
+
+    public void FoodChange(int foodAmount)
+    {
+        food += foodAmount;
+        foodDisplay.text = food.ToString();
+    }
+
+    public void WoodChange(int woodAmount)
+    {
+        wood += woodAmount;
+        //woodDisplay.text = wood.ToString();
     }
 
     public void IncreasePopulation()
