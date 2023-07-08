@@ -31,15 +31,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
-                },
-                {
-                    "name": "Test",
-                    "type": "Button",
-                    "id": "e86f24f3-cb28-49cc-9fc9-ddaa0a7b4ed2",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -47,17 +38,6 @@
                     "name": "",
                     "id": "f82f16c0-7daf-4f6c-a3cd-fcadef31aa99",
                     "path": "<Mouse>/position",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "MousePosition",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "87ebf2f5-97c1-4c42-ba8d-d9966a0c37ae",
-                    "path": "<Pointer>/position",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -84,17 +64,6 @@
                     "processors": "",
                     "groups": "",
                     "action": "RightClick",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "efcac35e-661d-44ad-b515-eb82849cd741",
-                    "path": "<Keyboard>/w",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Test",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
