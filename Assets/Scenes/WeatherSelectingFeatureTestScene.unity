@@ -636,11 +636,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  attackDuration: 3
-  damage: 2
+  attackDuration: 0.5
+  damage: 20
   towerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
 --- !u!212 &661798269
 SpriteRenderer:
   m_ObjectHideFlags: 0

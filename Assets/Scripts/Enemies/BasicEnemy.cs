@@ -32,11 +32,11 @@ namespace Enemies {
         private IEnumerator TowerCheck() {
             while (true) {
                 if (_currentlyAttacking) yield break;
-                RaycastHit2D hit = Physics2D.Raycast(transform.position, _track.Direction, 1f, towerMask);
+                RaycastHit2D hit = Physics2D.Raycast(transform.position, _track.Direction, 0.1f, towerMask);
                 if (hit.transform != null) {
                     _currentlyAttacking = true;
                     _currentAttackingTower = hit.transform.GetComponent<HealthAttribute>();
-                    _attackTimer = 0;
+                    _attackTimer = attackDuration; //so the enemy attacks when immediatley geting to a tower
                 }
 
                 yield return new WaitForSeconds(0.1f);
@@ -47,14 +47,16 @@ namespace Enemies {
             
             if (_currentlyAttacking) {
                 if (_currentAttackingTower == null || _currentAttackingTower.Health <= 0) {
+                    Debug.Log("Tower doesn't exist anymore, proceed");
                     _currentlyAttacking = false;
                     return;
                 }
                 if (_attackTimer >= attackDuration) {
+                    Debug.Log("Deal Damage");
                     _currentAttackingTower.Health -= damage;
                     _attackTimer = 0;
                 }
-                
+                ;
                 _attackTimer += Time.deltaTime;
                 return;
             }

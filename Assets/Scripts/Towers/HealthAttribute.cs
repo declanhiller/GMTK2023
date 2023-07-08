@@ -16,6 +16,7 @@ namespace Towers {
         public float Health {
             get => health;
             set {
+                health = value;
                 if(value <= 0) {
                     OnZeroHealth?.Invoke();
                     Destroy(gameObject, 0.05f);
