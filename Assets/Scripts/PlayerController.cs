@@ -27,6 +27,8 @@ public class PlayerController : MonoBehaviour {
 
         _keybinds.Player.RightClick.started += StartDrag;
         _keybinds.Player.RightClick.canceled += EndDrag;
+
+        _keybinds.Player.Test.performed += PrintOut;
         
         _mainCamera = Camera.main;
     }
@@ -38,6 +40,10 @@ public class PlayerController : MonoBehaviour {
     // Update is called once per frame
     void Update() {
         Hover();
+    }
+
+    void PrintOut(InputAction.CallbackContext context) {
+        Debug.Log("Test");
     }
 
     private void Hover() {
