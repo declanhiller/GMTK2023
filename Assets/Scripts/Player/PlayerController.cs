@@ -23,6 +23,8 @@ namespace Player {
 
         [SerializeField] private GameObject enemyPrefab;
 
+        [SerializeField] private BuildingDragger dragger;
+
 
         private float spawnCoolDown;
 
@@ -45,9 +47,7 @@ namespace Player {
 
             Keybinds.Player.RightClick.started += StartDrag;
             Keybinds.Player.RightClick.canceled += EndDrag;
-
-            Keybinds.Player.Space.performed += PlaceUnit;
-
+            
             _mainCamera = Camera.main;
 
             Tuple<Vector2,Vector2> boundingPoints = map.FillOutBoundingPoints();
@@ -72,10 +72,11 @@ namespace Player {
         private void Hover() {
             _mousePosition = _mainCamera.ScreenToWorldPoint(
                 Keybinds.Player.MousePosition.ReadValue<Vector2>());
-            map.LightUpCell(_mousePosition);
+            if (dragger.isDragging) return;
+            map.LightUpCell(_mousePosition, false);
         }
 
-        private void PlaceUnit(InputAction.CallbackContext context) {
+        public void PlaceUnit() {
             if (!map.HasCell(_mousePosition, out Cell cell)) return;
             if (!cell.isExcavated) return;
             if (cell.isOccupiedByBuilding) return;
