@@ -2,10 +2,12 @@
 using System;
 using UnityEngine;
 using UnityEngine.Serialization;
+using WeatherEvents;
 
 namespace Towers {
     public class HealthAttribute : MonoBehaviour {
         [SerializeField] private float health;
+        private RageBar rage;
 
         public event Action OnZeroHealth;
         public static int towersCount;
@@ -17,6 +19,12 @@ namespace Towers {
         private void Awake()
         {
             towersCount++;
+            rage = GameObject.Find("Rage Bar").GetComponent<RageBar>();
+        }
+
+        private void Start()
+        {
+            OnZeroHealth += rage.IncreaseRageBarForTowerDeath;
         }
 
         public float Health {
