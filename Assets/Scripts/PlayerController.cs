@@ -59,22 +59,17 @@ public class PlayerController : MonoBehaviour {
     }
 
     private void StartDrag(InputAction.CallbackContext context) {
-        Debug.Log("Start Drag");
         _dragCoroutine = StartCoroutine(Drag());
     }
 
     private void EndDrag(InputAction.CallbackContext context) {
-        Debug.Log("End Drag");
         StopCoroutine(_dragCoroutine);
     }
 
     IEnumerator Drag() {
         Vector2 startMousePosition = _mousePosition;
-        Vector3 startCameraPosition = _mainCamera.transform.position;
         Vector2 previousFrameMousePosition = _mousePosition;
         while (true) {
-
-            Debug.Log("Dragging");
             
             Vector2 deltaMousePosition = previousFrameMousePosition - startMousePosition;
 
