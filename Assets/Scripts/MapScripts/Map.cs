@@ -16,6 +16,9 @@ namespace MapScripts {
         [SerializeField] private TileBase hoverTile;
 
         [SerializeField] private TileBase buildingTile;
+
+        [SerializeField] private TileBase buildingErrorTile;
+        [SerializeField] private TileBase buildingOkTile;
         
         public List<Cell> _cells;
 
@@ -29,6 +32,7 @@ namespace MapScripts {
         [SerializeField] private Tilemap _tilemap;
         [SerializeField] private Tilemap _hoverTilemap;
         [FormerlySerializedAs("_forestAndBuildingTilemap")] [SerializeField] private Tilemap _forestTilemap;
+        [SerializeField] public Tilemap buildingHoverTilemap;
 
         private ResourceManager _resourceManager;
         [SerializeField] private float woodRequirementForBasicBuilding; //eventually move this so it's in a SO
@@ -61,21 +65,51 @@ namespace MapScripts {
             
         }
 
-        public void LightUpCell(Vector3 position) {
-            Vector3Int gridPosition = _grid.WorldToCell(position);
-            if (_currentHoveringOverCellPosition == gridPosition) return;
+        public bool isValidSpotToBuild; //this is so spaghettied
 
-            _hoverTilemap.SetTile(_currentHoveringOverCellPosition, null);
+        public void LightUpCell(Vector3 position, bool isBuildingLightUp) {
+            if (isBuildingLightUp) {
+                Vector3Int gridPosition = _grid.WorldToCell(position);
+                if (_currentHoveringOverCellPosition == gridPosition) return;
+
+                buildingHoverTilemap.SetTile(_currentHoveringOverCellPosition, null);
+                _hoverTilemap.SetTile(_currentHoveringOverCellPosition, null);
 
             
-            _currentHoveringOverCellPosition = gridPosition;
+                _currentHoveringOverCellPosition = gridPosition;
 
             
-            if (!_tilemap.HasTile(gridPosition)) {
-                return;
+                if (!_tilemap.HasTile(gridPosition)) {
+                    return;
+                }
+
+                Cell cell = _cells.First((c) => c.cellPosition.Equals(gridPosition));
+
+                if (!cell.isExcavated || cell.isOccupiedByBuilding) {
+                    buildingHoverTilemap.SetTile(gridPosition, buildingErrorTile);
+                    isValidSpotToBuild = false;
+                }
+                else {
+                    _hoverTilemap.SetTile(gridPosition, buildingOkTile);
+                    isValidSpotToBuild = true;
+                }
+
             }
-            _hoverTilemap.SetTile(gridPosition, hoverTile);
+            else {
+                Vector3Int gridPosition = _grid.WorldToCell(position);
+                if (_currentHoveringOverCellPosition == gridPosition) return;
 
+                _hoverTilemap.SetTile(_currentHoveringOverCellPosition, null);
+
+            
+                _currentHoveringOverCellPosition = gridPosition;
+
+            
+                if (!_tilemap.HasTile(gridPosition)) {
+                    return;
+                }
+                _hoverTilemap.SetTile(gridPosition, hoverTile);
+            }
         }
 
         public void ClickCell(Vector3 position)
@@ -117,7 +151,7 @@ namespace MapScripts {
         public void PlaceUnitInCell(Cell cell, GameObject placingUnit) {
             if (_resourceManager.Wood < woodRequirementForBasicBuilding) return;
             cell.isOccupiedByBuilding = true;
-            // _forestTilemap.SetTile(cell.cellPosition, buildingTile);
+            _forestTilemap.SetTile(cell.cellPosition, buildingTile);
             Instantiate(placingUnit, cell.transform.position, Quaternion.identity, cell.transform);
             if(ResourceManager.instance.currentState == ResourceManager.State.nature)
             {
@@ -128,6 +162,7 @@ namespace MapScripts {
         public enum MapEvent {
             BuildingPlaced, ForestDestroyed, PlacingWolf
         }
-        
+
+
     }
 }
