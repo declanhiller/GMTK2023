@@ -7,12 +7,27 @@ using UnityEngine.Serialization;
 
 namespace Enemies {
     public class BasicEnemy : MonoBehaviour {
+
+        public static event Action<BasicEnemy> OnEnemyDeath;
         
         public float speed;
         [FormerlySerializedAs("attackSpeed")] public float attackDuration;
         public float damage;
 
         [SerializeField] private LayerMask towerMask;
+
+        [SerializeField] private float maxHealth;
+
+        public float Health {
+            get => maxHealth;
+            set {
+                maxHealth = value;
+                if (value <= 0) {
+                    OnEnemyDeath?.Invoke(this);
+                    Destroy(gameObject);
+                }
+            }
+        }
 
         private Track _track;
 
@@ -32,7 +47,7 @@ namespace Enemies {
         private IEnumerator TowerCheck() {
             while (true) {
                 if (_currentlyAttacking) yield break;
-                RaycastHit2D hit = Physics2D.Raycast(transform.position, _track.Direction, 0.1f, towerMask);
+                RaycastHit2D hit = Physics2D.Raycast(transform.position, _track.Direction, 0.4f, towerMask);
                 if (hit.transform != null) {
                     _currentlyAttacking = true;
                     _currentAttackingTower = hit.transform.GetComponent<HealthAttribute>();

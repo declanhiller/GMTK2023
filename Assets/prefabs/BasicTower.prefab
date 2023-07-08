@@ -182,9 +182,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletSpeed: 20
-  fireRate: 2
+  fireRate: 0.3
   range: 5
-  damage: 5
+  damage: 15
   firePoint: {fileID: 6960521075111627275}
   projectilePrefab: {fileID: 1852835675737096601, guid: 2c626eccb3fc04758bd6ea73b4ddb0c8, type: 3}
   _enemyLayerMask:

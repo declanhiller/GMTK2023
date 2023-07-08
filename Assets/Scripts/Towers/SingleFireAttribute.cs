@@ -62,6 +62,9 @@ namespace Towers {
                 timer += Time.deltaTime * actualSpeed;
                 yield return new WaitForEndOfFrame();
             }
+
+            BasicEnemy basicEnemy = target.GetComponent<BasicEnemy>();
+            basicEnemy.Health -= damage;
             Destroy(bullet);
         }
 
