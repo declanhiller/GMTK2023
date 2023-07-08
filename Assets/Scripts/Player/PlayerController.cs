@@ -20,8 +20,12 @@ namespace Player {
 
         private Coroutine _dragCoroutine;
 
+        private ResourceManager _resourceManager;
+
         private Vector3 _min;
         private Vector3 _max;
+
+        [SerializeField] private float woodRequirementForBasicBuilding; //eventually move this so it's in a SO
 
         private void Awake() {
             Keybinds = new Keybinds();
@@ -43,6 +47,8 @@ namespace Player {
             Tuple<Vector2,Vector2> boundingPoints = map.FillOutBoundingPoints();
             _min = boundingPoints.Item1;
             _max = boundingPoints.Item2;
+
+            _resourceManager = ResourceManager.instance;
         }
 
         public void OnClick(InputAction.CallbackContext context) {
@@ -66,6 +72,7 @@ namespace Player {
             if (!map.HasCell(_mousePosition, out Cell cell)) return;
             if (!cell.isExcavated) return;
             if (cell.isOccupiedByBuilding) return;
+            if (_resourceManager.Wood < woodRequirementForBasicBuilding) return;
             
             map.PlaceBuildingInCell(cell);
 

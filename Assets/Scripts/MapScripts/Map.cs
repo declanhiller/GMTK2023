@@ -46,7 +46,7 @@ namespace MapScripts {
 
                         cell.isExcavated = !_forestTilemap.HasTile(localPos);
 
-                        cell.woodAmount = Random.Range(25, 100);
+                        cell.woodInForest = Random.Range(25, 100);
                         
                         cell.map = this;
                         _cells.Add(cell);

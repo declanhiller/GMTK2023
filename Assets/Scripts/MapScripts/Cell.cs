@@ -4,6 +4,7 @@ using UnityEngine.Events;
 using System;
 using System.Linq;
 using System.Collections.Generic;
+using UnityEngine.Serialization;
 
 namespace MapScripts {
     public class Cell : MonoBehaviour {
@@ -16,7 +17,7 @@ namespace MapScripts {
         public bool isOccupiedByBuilding;
 
         private int foodAmount;
-        public int woodAmount;
+        [FormerlySerializedAs("woodAmount")] public int woodInForest;
 
         public void onClick()
         {
@@ -27,16 +28,16 @@ namespace MapScripts {
         public void Excavation() {
             Debug.Log("Excavate");
             if (!HasNeighborExcavatedCell()) return;
-            woodAmount--;
-            Debug.Log("Wood remaining in forest: " + woodAmount);
-            if(woodAmount <= 0)
+            woodInForest--;
+            Debug.Log("Wood remaining in forest: " + woodInForest);
+            if(woodInForest <= 0)
             {
                 isExcavated = true;
                 
                 map.DestroyForest(cellPosition);
             }
             
-            ResourceManager.instance.WoodChange(1);
+            ResourceManager.instance.Wood++;
         }
 
         public bool HasNeighborExcavatedCell()

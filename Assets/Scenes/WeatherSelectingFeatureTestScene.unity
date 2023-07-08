@@ -821,6 +821,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   map: {fileID: 330794330}
   sensitivity: 0.4
+  woodRequirementForBasicBuilding: 30
 --- !u!4 &594811436
 Transform:
   m_ObjectHideFlags: 0
@@ -2020,13 +2021,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6b70801438199a43b35c0edfebd26a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dropWoodWait: 5
-  dropFoodWait: 5
-  populateWait: 5
-  dropWoodRate: 5
-  dropFoodRate: 5
-  populateRate: 5
-  populationLimit: 5
 --- !u!4 &1014592938
 Transform:
   m_ObjectHideFlags: 0
