@@ -153,6 +153,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   map: {fileID: 496782698}
+  sensitivity: 0.4
 --- !u!4 &454394350
 Transform:
   m_ObjectHideFlags: 0
