@@ -86,7 +86,7 @@ namespace Player {
                 switch (ResourceManager.instance.currentState)
                 {
                     case ResourceManager.State.human:
-                        map.PlaceUnitInCell(cell, towerPrefab);
+                        map.PlaceBuildingInCell(cell);
                         spawnCoolDown = 0;
                         break;
                     case ResourceManager.State.nature:

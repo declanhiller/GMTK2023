@@ -133,7 +133,7 @@ MonoBehaviour:
   range: 5
   damage: 15
   firePoint: {fileID: 6960521075111627275}
-  projectilePrefab: {fileID: 1852835675737096601, guid: 2c626eccb3fc04758bd6ea73b4ddb0c8, type: 3}
+  projectilePrefab: {fileID: 3397490346511135827, guid: 8b61aaabc826c4fcaba8bf4f2f467d0b, type: 3}
   _enemyLayerMask:
     serializedVersion: 2
     m_Bits: 64

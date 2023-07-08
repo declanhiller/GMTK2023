@@ -41,6 +41,8 @@ namespace MapScripts {
         private ResourceManager _resourceManager;
         [SerializeField] private float woodRequirementForBasicBuilding; //eventually move this so it's in a SO
 
+        [SerializeField] public GameObject basicTowerPrefab;
+
         private void Start() {
 
             _resourceManager = ResourceManager.instance;
@@ -157,12 +159,20 @@ namespace MapScripts {
         public void PlaceUnitInCell(Cell cell, GameObject placingUnit) {
             if (_resourceManager.Wood < woodRequirementForBasicBuilding) return;
             cell.isOccupiedByBuilding = true;
-            _forestTilemap.SetTile(cell.cellPosition, buildingTile);
+            // _forestTilemap.SetTile(cell.cellPosition, buildingTile);
             Instantiate(placingUnit, cell.transform.position, Quaternion.identity, cell.transform);
             if(ResourceManager.instance.currentState == ResourceManager.State.nature)
             {
                 OnMapEvent?.Invoke(MapEvent.PlacingWolf);
             } else OnMapEvent?.Invoke(MapEvent.BuildingPlaced);
+        }
+        
+        public void PlaceBuildingInCell(Cell cell) {
+            cell.isOccupiedByBuilding = true;
+            _forestTilemap.SetTile(cell.cellPosition, buildingTile);
+            GameObject basicTower = Instantiate(basicTowerPrefab, cell.transform.position, Quaternion.identity, cell.transform);
+            OnMapEvent?.Invoke(MapEvent.BuildingPlaced);
+            
         }
 
         public enum MapEvent {
