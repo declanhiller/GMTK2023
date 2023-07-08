@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace WeatherEvents {
@@ -8,19 +9,19 @@ namespace WeatherEvents {
 
         [SerializeField] private float maxNumberOfRagePoints;
 
-        [SerializeField] private Slider _slider;
+        [FormerlySerializedAs("_slider")] [SerializeField] private Slider slider;
         
         private void Start() {
-            _slider.maxValue = maxNumberOfRagePoints;
-            _slider.value = _slider.maxValue;
+            slider.maxValue = maxNumberOfRagePoints;
+            slider.value = slider.maxValue;
         }
 
         public void AddListener(UnityAction<float> updateButtonsBasedOnRagePoints) {
-            _slider.onValueChanged.AddListener(updateButtonsBasedOnRagePoints);
+            slider.onValueChanged.AddListener(updateButtonsBasedOnRagePoints);
         }
 
         public void DecreaseRageBar(float value) {
-            _slider.value -= value;
+            slider.value -= value;
         }
     }
 }

@@ -21,8 +21,7 @@ namespace MapScripts {
 
         private void Start() {
             _grid = GetComponent<Grid>();
-
-
+            
             _cells = new List<Cell>();
 
             for (int i = _tilemap.cellBounds.xMin; i < _tilemap.cellBounds.xMax; i++) {
