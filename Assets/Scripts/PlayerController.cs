@@ -20,6 +20,9 @@ public class PlayerController : MonoBehaviour {
 
     private Coroutine _dragCoroutine;
 
+    private Vector3 _min;
+    private Vector3 _max;
+
     private void Awake() {
         Keybinds = new Keybinds();
         Keybinds.Enable();
@@ -34,6 +37,10 @@ public class PlayerController : MonoBehaviour {
         Keybinds.Player.RightClick.canceled += EndDrag;
 
         _mainCamera = Camera.main;
+
+        Tuple<Vector2,Vector2> boundingPoints = map.FillOutBoundingPoints();
+        _min = boundingPoints.Item1;
+        _max = boundingPoints.Item2;
     }
 
     public void OnClick(InputAction.CallbackContext context) {
@@ -54,25 +61,28 @@ public class PlayerController : MonoBehaviour {
     }
 
     private void StartDrag(InputAction.CallbackContext context) {
-        Debug.Log("Start Drag");
         _dragCoroutine = StartCoroutine(Drag());
     }
 
     private void EndDrag(InputAction.CallbackContext context) {
-        Debug.Log("End Drag");
         StopCoroutine(_dragCoroutine);
     }
 
     IEnumerator Drag() {
         Vector2 startMousePosition = _mousePosition;
-        Vector3 startCameraPosition = _mainCamera.transform.position;
+        Vector2 previousFrameMousePosition = _mousePosition;
         while (true) {
+            
+            Vector2 deltaMousePosition = previousFrameMousePosition - startMousePosition;
 
-            Debug.Log("Dragging");
+            Vector3 proposedPosition = _mainCamera.transform.position - (Vector3) deltaMousePosition * sensitivity;
+
+            proposedPosition = new Vector3(Mathf.Clamp(proposedPosition.x, _min.x, _max.x), 
+                Mathf.Clamp(proposedPosition.y, _min.y,_max.y), proposedPosition.z);
+
+            _mainCamera.transform.position = proposedPosition;
             
-            Vector2 deltaMousePosition = _mousePosition - startMousePosition;
-            _mainCamera.transform.position = startCameraPosition - ((Vector3) deltaMousePosition * sensitivity);
-            
+            previousFrameMousePosition = _mousePosition;
             yield return new WaitForEndOfFrame();
         }
     }
