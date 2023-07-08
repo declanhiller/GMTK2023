@@ -2,15 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Assertions.Must;
 using UnityEngine.Tilemaps;
 
 namespace MapScripts {
     public class Map : MonoBehaviour {
-
-        [SerializeField] private int width;
-        [SerializeField] private int height;
-
-        [SerializeField] private Vector2Int startTile;
+        
 
         [SerializeField] private TileBase hoverTile;
 
@@ -24,11 +21,10 @@ namespace MapScripts {
 
         private void Start() {
             _grid = GetComponent<Grid>();
-            _grid.GetCellCenterWorld((Vector3Int) startTile);
 
 
             _cells = new List<Cell>();
-            
+
             for (int i = _tilemap.cellBounds.xMin; i < _tilemap.cellBounds.xMax; i++) {
                 for (int j = _tilemap.cellBounds.yMin; j < _tilemap.cellBounds.yMax; j++) {
                     Vector3Int localPos = new Vector3Int(i, j, (int) _tilemap.transform.position.y);
@@ -75,5 +71,10 @@ namespace MapScripts {
             return true;
         }
 
+        public Tuple<Vector2, Vector2> FillOutBoundingPoints() {
+            Bounds tilemapLocalBounds = _tilemap.localBounds;
+            return new Tuple<Vector2, Vector2>(tilemapLocalBounds.min + _tilemap.transform.position,
+                tilemapLocalBounds.max + _tilemap.transform.position);
+        }
     }
 }
