@@ -1,5 +1,7 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
+using Enemies;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -9,36 +11,45 @@ namespace Towers {
         [SerializeField] private float fireRate;
         [SerializeField] private float range;
         [SerializeField] private float damage;
-        [SerializeField] private Vector3 firePoint;
+        [SerializeField] private Transform firePoint;
         [FormerlySerializedAs("projectile")] [SerializeField] private GameObject projectilePrefab;
         [SerializeField] private LayerMask _enemyLayerMask;
+        [SerializeField] private CircleCollider2D collider;
+
+        private List<BasicEnemy> _enemiesInRange;
+        private bool _isFiring;
 
         private void Start() {
-            StartCoroutine(CheckForFire());
+            _enemiesInRange = new List<BasicEnemy>();
+            collider.radius = range;
         }
 
-        private IEnumerator CheckForFire() {
-            while (true) {
-                Transform target;
-                while (true) {
-                    Collider2D overlapCircle = Physics2D.OverlapCircle(firePoint, range, _enemyLayerMask);
-                    if (overlapCircle != null) {
-                        target = overlapCircle.transform;
-                        break;
-                    }
-                    yield return new WaitForSeconds(0.2f);
-                }
 
-                Fire(target);
-                
+        private void Update() {
+            if (_enemiesInRange.Count == 0) return;
+            if (_isFiring) return;
+            StartCoroutine(Fire());
+        }
+
+        private void OnTriggerEnter2D(Collider2D other) {
+            _enemiesInRange.Add(other.GetComponent<BasicEnemy>());
+        }
+
+        private void OnTriggerExit2D(Collider2D other) {
+            _enemiesInRange.Remove(other.GetComponent<BasicEnemy>());
+        }
+
+        private IEnumerator Fire() {
+            _isFiring = true;
+            while (_enemiesInRange.Count != 0) {
+                GameObject bullet = Instantiate(projectilePrefab, firePoint.position, Quaternion.identity);
+                StartCoroutine(BulletTravel(bullet, _enemiesInRange[0].transform));
                 yield return new WaitForSeconds(fireRate);
             }
-        }
 
-        private void Fire(Transform target) {
-            GameObject bullet = Instantiate(projectilePrefab, firePoint, Quaternion.identity);
-            StartCoroutine(BulletTravel(bullet, target));
+            _isFiring = false;
         }
+        
 
         private IEnumerator BulletTravel(GameObject bullet, Transform target) {
             Vector3 startPosition = bullet.transform.position;

@@ -27,7 +27,7 @@ namespace MapScripts {
         private Grid _grid;
         [SerializeField] private Tilemap _tilemap;
         [SerializeField] private Tilemap _hoverTilemap;
-        [FormerlySerializedAs("_forestTilemap")] [SerializeField] private Tilemap _forestAndBuildingTilemap;
+        [FormerlySerializedAs("_forestAndBuildingTilemap")] [SerializeField] private Tilemap _forestTilemap;
 
         [SerializeField] private GameObject basicTowerPrefab; 
 
@@ -42,9 +42,9 @@ namespace MapScripts {
                     if (_tilemap.HasTile(localPos)) {
                         Cell cell = Instantiate(_cell).GetComponent<Cell>();
                         cell.cellPosition = localPos;
-                        cell.transform.position = _grid.CellToWorld(localPos);
+                        cell.transform.position = _grid.GetCellCenterWorld(localPos);
 
-                        cell.isExcavated = !_forestAndBuildingTilemap.HasTile(localPos);
+                        cell.isExcavated = !_forestTilemap.HasTile(localPos);
 
                         cell.woodAmount = Random.Range(25, 100);
                         
@@ -106,12 +106,12 @@ namespace MapScripts {
 
         public void DestroyForest(Vector3Int cellPosition) {
             OnMapEvent?.Invoke(MapEvent.ForestDestroyed);
-            _forestAndBuildingTilemap.SetTile(cellPosition, null);
+            _forestTilemap.SetTile(cellPosition, null);
         }
 
         public void PlaceBuildingInCell(Cell cell) {
             cell.isOccupiedByBuilding = true;
-            _forestAndBuildingTilemap.SetTile(cell.cellPosition, buildingTile);
+            // _forestTilemap.SetTile(cell.cellPosition, buildingTile);
             GameObject basicTower = Instantiate(basicTowerPrefab, cell.transform.position, Quaternion.identity, cell.transform);
             OnMapEvent?.Invoke(MapEvent.BuildingPlaced);
             
