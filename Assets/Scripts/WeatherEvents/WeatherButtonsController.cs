@@ -49,7 +49,7 @@ namespace WeatherEvents {
         //Just starts the cooldown for the button and decreases the cooldown
         public void RegisterStartWeatherEvent(WeatherEventDataPasser weatherDataPasser) {
             weatherDataPasser.button.interactable = false;
-            _rageBar.DecreaseRageBar(weatherData.GetRagePoints(weatherDataPasser.weatherEvent));
+            _rageBar.RagePoints -= weatherData.GetRagePoints(weatherDataPasser.weatherEvent);
             Timer timer = new Timer(weatherData.GetCooldownTime(weatherDataPasser.weatherEvent), this,
                 () => weatherDataPasser.button.interactable = true);
             if (weatherDataPasser.button.TryGetComponent(out ButtonCooldown component)) {
