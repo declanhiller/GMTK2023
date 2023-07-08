@@ -7,6 +7,7 @@ using UnityEngine.Assertions.Must;
 using UnityEngine.Serialization;
 using UnityEngine.Tilemaps;
 using Random = UnityEngine.Random;
+using Enemies;
 
 namespace MapScripts {
     public class Map : MonoBehaviour {
@@ -29,9 +30,13 @@ namespace MapScripts {
         [SerializeField] private Tilemap _hoverTilemap;
         [FormerlySerializedAs("_forestAndBuildingTilemap")] [SerializeField] private Tilemap _forestTilemap;
 
-        [SerializeField] private GameObject basicTowerPrefab; 
+        private ResourceManager _resourceManager;
+        [SerializeField] private float woodRequirementForBasicBuilding; //eventually move this so it's in a SO
 
         private void Start() {
+
+            _resourceManager = ResourceManager.instance;
+            
             _grid = GetComponent<Grid>();
             
             _cells = new List<Cell>();
@@ -109,11 +114,11 @@ namespace MapScripts {
             _forestTilemap.SetTile(cellPosition, null);
         }
 
-        public void PlaceBuildingInCell(Cell cell) {
+        public void PlaceUnitInCell(Cell cell, GameObject placingUnit) {
+            if (_resourceManager.Wood < woodRequirementForBasicBuilding) return;
             cell.isOccupiedByBuilding = true;
-            _forestTilemap.SetTile(cell.cellPosition, buildingTile);
-            _forestTilemap.RefreshTile(cell.cellPosition);
-            GameObject basicTower = Instantiate(basicTowerPrefab, cell.transform.position, Quaternion.identity, cell.transform);
+            // _forestTilemap.SetTile(cell.cellPosition, buildingTile);
+            Instantiate(placingUnit, cell.transform.position, Quaternion.identity, cell.transform);
             OnMapEvent?.Invoke(MapEvent.BuildingPlaced);
             
         }

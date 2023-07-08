@@ -18,15 +18,19 @@ namespace Player {
 
         [SerializeField] private float sensitivity;
 
+        [SerializeField] private GameObject towerPrefab;
+
+        [SerializeField] private GameObject enemyPrefab;
+
+
+
         private Coroutine _dragCoroutine;
 
         private ResourceManager _resourceManager;
 
         private Vector3 _min;
         private Vector3 _max;
-
-        [SerializeField] private float woodRequirementForBasicBuilding; //eventually move this so it's in a SO
-
+        
         private void Awake() {
             Keybinds = new Keybinds();
             Keybinds.Enable();
@@ -40,7 +44,7 @@ namespace Player {
             Keybinds.Player.RightClick.started += StartDrag;
             Keybinds.Player.RightClick.canceled += EndDrag;
 
-            Keybinds.Player.Space.performed += PlaceBuilding;
+            Keybinds.Player.Space.performed += PlaceUnit;
 
             _mainCamera = Camera.main;
 
@@ -68,13 +72,20 @@ namespace Player {
             map.LightUpCell(_mousePosition);
         }
 
-        private void PlaceBuilding(InputAction.CallbackContext context) {
+        private void PlaceUnit(InputAction.CallbackContext context) {
             if (!map.HasCell(_mousePosition, out Cell cell)) return;
             if (!cell.isExcavated) return;
             if (cell.isOccupiedByBuilding) return;
-            if (_resourceManager.Wood < woodRequirementForBasicBuilding) return;
-            
-            map.PlaceBuildingInCell(cell);
+
+            switch (ResourceManager.instance.currentState)
+            {
+                case ResourceManager.State.human:
+                    map.PlaceUnitInCell(cell, towerPrefab);
+                    break;
+                case ResourceManager.State.nature:
+                    map.PlaceUnitInCell(cell, enemyPrefab);
+                    break;
+            }
 
         }
 

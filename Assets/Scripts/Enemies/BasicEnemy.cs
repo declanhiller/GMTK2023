@@ -18,6 +18,8 @@ namespace Enemies {
 
         [SerializeField] private float maxHealth;
 
+        private static Vector3 moveDirection;
+
         public float Health {
             get => maxHealth;
             set {
@@ -40,13 +42,14 @@ namespace Enemies {
         
 
         private void Start() {
+            moveDirection = TrackLayout.Instance.GetMoveDirection();
             StartCoroutine(TowerCheck());
         }
 
         private IEnumerator TowerCheck() {
             while (true) {
                 if (_currentlyAttacking) yield break;
-                RaycastHit2D hit = Physics2D.Raycast(transform.position, track.Direction, 0.4f, towerMask);
+                RaycastHit2D hit = Physics2D.Raycast(transform.position, moveDirection, 0.4f, towerMask);
                 if (hit.transform != null) {
                     _currentlyAttacking = true;
                     _currentAttackingTower = hit.transform.GetComponent<HealthAttribute>();
@@ -75,8 +78,16 @@ namespace Enemies {
                 return;
             }
             
-            transform.Translate(speed * track.Direction * Time.deltaTime);
-            
+            transform.Translate(speed * moveDirection * Time.deltaTime);
+
+            if(ResourceManager.instance.currentState == ResourceManager.State.human)
+            {
+                if (Vector3.Distance(transform.position, track.EndPosition) < 0.1)
+                {
+                    ResourceManager.instance.Health--;
+                    Destroy(gameObject);
+                }
+            }
         }
     }
 }
