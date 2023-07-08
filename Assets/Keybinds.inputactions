@@ -47,6 +47,17 @@
                 },
                 {
                     "name": "",
+                    "id": "87ebf2f5-97c1-4c42-ba8d-d9966a0c37ae",
+                    "path": "<Pointer>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MousePosition",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "414d2c79-fed4-4967-b39e-599702f06ffa",
                     "path": "<Mouse>/leftButton",
                     "interactions": "",
