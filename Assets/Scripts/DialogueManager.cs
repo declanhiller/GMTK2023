@@ -36,6 +36,7 @@ namespace DefaultNamespace {
 
 
         void UpdateDialogue() {
+            if (dialogues.Count == 0) return;
             if(_currentUpdatingText != null) StopCoroutine(_currentUpdatingText);
             string dialogueString = dialogues[0];
             dialogues.Remove(dialogueString);

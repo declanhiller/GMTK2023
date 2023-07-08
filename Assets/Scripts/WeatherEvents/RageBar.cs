@@ -20,9 +20,12 @@ namespace WeatherEvents {
 
         public float RagePoints {
             get => slider.value;
-            set => slider.value = value;
+            set {
+                slider.value = value;
+                Debug.Log(slider.value);
+            }
         }
-        
+
         [FormerlySerializedAs("_slider")] [SerializeField] private Slider slider;
         
         
@@ -41,10 +44,10 @@ namespace WeatherEvents {
         private void IncreaseRageBar(Map.MapEvent mapEvent) {
             switch (mapEvent) {
                 case Map.MapEvent.BuildingPlaced:
-                    RagePoints -= buildingRagePoints;
+                    RagePoints += buildingRagePoints;
                     break;
                 case Map.MapEvent.ForestDestroyed:
-                    RagePoints -= forestDestroyRagePoints;
+                    RagePoints += forestDestroyRagePoints;
                     break;
             }
         }
