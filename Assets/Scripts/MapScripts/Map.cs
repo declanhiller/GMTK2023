@@ -19,6 +19,10 @@ namespace MapScripts {
 
         [SerializeField] private TileBase buildingErrorTile;
         [SerializeField] private TileBase buildingOkTile;
+
+        [SerializeField] private TileBase aliveForestTile;
+        [SerializeField] private TileBase semiDeadForestTile;
+        [SerializeField] private TileBase deadForestTile;
         
         public List<Cell> _cells;
 
@@ -55,8 +59,10 @@ namespace MapScripts {
 
                         cell.isExcavated = !_forestTilemap.HasTile(localPos);
 
-                        cell.woodInForest = Random.Range(25, 100);
-                        
+                        int range = Random.Range(50, 100);
+                        cell.woodInForest = range;
+                        cell._startWoodAmount = range;
+
                         cell.map = this;
                         _cells.Add(cell);
                     }
@@ -164,5 +170,16 @@ namespace MapScripts {
         }
 
 
+        public void ChangeTilesToMatchResourcesRemaining(Cell cell, float ratio) {
+            Debug.Log(ratio);
+            if (ratio > 0.85f) {
+                _tilemap.SetTile(cell.cellPosition, aliveForestTile);
+            } else if (ratio > 0.6f) {
+                _tilemap.SetTile(cell.cellPosition, semiDeadForestTile);
+            }
+            else {
+                _tilemap.SetTile(cell.cellPosition, deadForestTile);
+            }
+        }
     }
 }
