@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
+using Towers;
 
 namespace WeatherEvents {
     public class RageBar : MonoBehaviour {
@@ -14,7 +15,8 @@ namespace WeatherEvents {
         [SerializeField] private float buildingRagePoints;
         [SerializeField] private float forestDestroyRagePoints;
         [SerializeField] private float animalDestroyRagePoints;
-        
+        [SerializeField] private float PlacingCostPoints;
+
 
         [SerializeField] private Map map;
 
@@ -22,7 +24,6 @@ namespace WeatherEvents {
             get => slider.value;
             set {
                 slider.value = value;
-                Debug.Log(slider.value);
             }
         }
 
@@ -33,7 +34,7 @@ namespace WeatherEvents {
         private void Start() {
             slider.maxValue = maxNumberOfRagePoints;
             slider.value = 0;
-            map.OnMapEvent += IncreaseRageBar;
+            map.OnMapEvent += ChangeRageBar;
             BasicEnemy.OnEnemyDeath += IncreaseRageBarForAnimalDeath;
         }
 
@@ -41,13 +42,24 @@ namespace WeatherEvents {
             RagePoints += animalDestroyRagePoints;
         }
 
-        private void IncreaseRageBar(Map.MapEvent mapEvent) {
+        private void ChangeRageBar(Map.MapEvent mapEvent) {
             switch (mapEvent) {
                 case Map.MapEvent.BuildingPlaced:
                     RagePoints += buildingRagePoints;
                     break;
                 case Map.MapEvent.ForestDestroyed:
                     RagePoints += forestDestroyRagePoints;
+                    break;
+                case Map.MapEvent.PlacingWolf:
+                    RagePoints -= PlacingCostPoints;
+                    if (RagePoints <= 0)
+                    {
+                        if (HealthAttribute.towersCount > 0)
+                        {
+                            Debug.Log("You Lose!");
+                            ResourceManager.instance.onLoseEvent?.Invoke();
+                        }
+                    }
                     break;
             }
         }

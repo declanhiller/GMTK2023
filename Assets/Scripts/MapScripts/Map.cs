@@ -153,12 +153,14 @@ namespace MapScripts {
             cell.isOccupiedByBuilding = true;
             _forestTilemap.SetTile(cell.cellPosition, buildingTile);
             Instantiate(placingUnit, cell.transform.position, Quaternion.identity, cell.transform);
-            OnMapEvent?.Invoke(MapEvent.BuildingPlaced);
-            
+            if(ResourceManager.instance.currentState == ResourceManager.State.nature)
+            {
+                OnMapEvent?.Invoke(MapEvent.PlacingWolf);
+            } else OnMapEvent?.Invoke(MapEvent.BuildingPlaced);
         }
 
         public enum MapEvent {
-            BuildingPlaced, ForestDestroyed
+            BuildingPlaced, ForestDestroyed, PlacingWolf
         }
 
 

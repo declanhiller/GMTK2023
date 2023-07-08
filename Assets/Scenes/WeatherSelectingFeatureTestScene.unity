@@ -4432,6 +4432,7 @@ MonoBehaviour:
   buildingRagePoints: 50
   forestDestroyRagePoints: 15
   animalDestroyRagePoints: 3
+  PlacingCostPoints: 100
   map: {fileID: 330794330}
   slider: {fileID: 1969967431}
 --- !u!1 &2020378375
