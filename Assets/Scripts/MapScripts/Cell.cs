@@ -7,6 +7,7 @@ using System.Collections.Generic;
 
 namespace MapScripts {
     public class Cell : MonoBehaviour {
+
         public Vector3Int cellPosition;
         public Map map;
 
@@ -31,6 +32,7 @@ namespace MapScripts {
             if(woodAmount <= 0)
             {
                 isExcavated = true;
+                
                 map.DestroyForest(cellPosition);
             }
             

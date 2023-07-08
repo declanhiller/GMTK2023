@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Towers;
 using UnityEngine;
 using UnityEngine.Assertions.Must;
 using UnityEngine.Serialization;
@@ -20,11 +21,15 @@ namespace MapScripts {
         [SerializeField] private GameObject _cell;
 
         private Vector3Int _currentHoveringOverCellPosition;
+        
+        public event Action<MapEvent> OnMapEvent; //probably use for the rage counter
 
         private Grid _grid;
         [SerializeField] private Tilemap _tilemap;
         [SerializeField] private Tilemap _hoverTilemap;
         [FormerlySerializedAs("_forestTilemap")] [SerializeField] private Tilemap _forestAndBuildingTilemap;
+
+        [SerializeField] private GameObject basicTowerPrefab; 
 
         private void Start() {
             _grid = GetComponent<Grid>();
@@ -37,6 +42,7 @@ namespace MapScripts {
                     if (_tilemap.HasTile(localPos)) {
                         Cell cell = Instantiate(_cell).GetComponent<Cell>();
                         cell.cellPosition = localPos;
+                        cell.transform.position = _grid.CellToWorld(localPos);
 
                         cell.isExcavated = !_forestAndBuildingTilemap.HasTile(localPos);
 
@@ -99,12 +105,21 @@ namespace MapScripts {
         }
 
         public void DestroyForest(Vector3Int cellPosition) {
+            OnMapEvent?.Invoke(MapEvent.ForestDestroyed);
             _forestAndBuildingTilemap.SetTile(cellPosition, null);
         }
 
         public void PlaceBuildingInCell(Cell cell) {
             cell.isOccupiedByBuilding = true;
             _forestAndBuildingTilemap.SetTile(cell.cellPosition, buildingTile);
+            GameObject basicTower = Instantiate(basicTowerPrefab, cell.transform.position, Quaternion.identity, cell.transform);
+            OnMapEvent?.Invoke(MapEvent.BuildingPlaced);
+            
         }
+
+        public enum MapEvent {
+            BuildingPlaced, ForestDestroyed
+        }
+        
     }
 }
