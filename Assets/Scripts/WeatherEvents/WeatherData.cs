@@ -14,26 +14,26 @@ namespace WeatherEvents {
         [SerializeField] public float tornadoRagePoints;
         [SerializeField] public float floodRagePoints;
         
-        public float GetCooldownTime(WeatherController.WeatherEvent weatherEvent) {
+        public float GetCooldownTime(WeatherButtonsController.WeatherEvent weatherEvent) {
             switch (weatherEvent) {
-                case WeatherController.WeatherEvent.DustBowl:
+                case WeatherButtonsController.WeatherEvent.DustBowl:
                     return dustBowlTimer;
-                case WeatherController.WeatherEvent.Flood:
+                case WeatherButtonsController.WeatherEvent.Flood:
                     return floodTimer;
-                case WeatherController.WeatherEvent.Tornado:
+                case WeatherButtonsController.WeatherEvent.Tornado:
                     return tornadoTimer;
                 default:
                     return 5;
             }
         }
 
-        public float GetRagePoints(WeatherController.WeatherEvent weatherEvent) {
+        public float GetRagePoints(WeatherButtonsController.WeatherEvent weatherEvent) {
             switch (weatherEvent) {
-                case WeatherController.WeatherEvent.DustBowl:
+                case WeatherButtonsController.WeatherEvent.DustBowl:
                     return dustBowlRagePoints;
-                case WeatherController.WeatherEvent.Tornado:
+                case WeatherButtonsController.WeatherEvent.Tornado:
                     return tornadoRagePoints;
-                case WeatherController.WeatherEvent.Flood:
+                case WeatherButtonsController.WeatherEvent.Flood:
                     return floodRagePoints;
                 default:
                     return 50;

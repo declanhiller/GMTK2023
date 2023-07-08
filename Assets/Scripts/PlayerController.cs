@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using MapScripts;
@@ -8,8 +9,8 @@ using UnityEngine.InputSystem;
 // Simple player controller just for testing... will probably need to be refactored... maybe
 public class PlayerController : MonoBehaviour {
 
-    private Keybinds _keybinds;
-    private Vector2 _mousePosition;
+    public Keybinds Keybinds { get; private set; }
+    public Vector2 _mousePosition { get; private set; }
 
     private Camera _mainCamera;
 
@@ -19,14 +20,18 @@ public class PlayerController : MonoBehaviour {
 
     private Coroutine _dragCoroutine;
 
+    private void Awake() {
+        Keybinds = new Keybinds();
+        Keybinds.Enable();
+    }
+
     // Start is called before the first frame update
     void Start() {
-        _keybinds = new Keybinds();
-        _keybinds.Enable();
-        _keybinds.Player.Click.performed += OnClick;
 
-        _keybinds.Player.RightClick.started += StartDrag;
-        _keybinds.Player.RightClick.canceled += EndDrag;
+        Keybinds.Player.Click.performed += OnClick;
+
+        Keybinds.Player.RightClick.started += StartDrag;
+        Keybinds.Player.RightClick.canceled += EndDrag;
 
         _mainCamera = Camera.main;
     }
@@ -42,7 +47,7 @@ public class PlayerController : MonoBehaviour {
 
     private void Hover() {
         _mousePosition = _mainCamera.ScreenToWorldPoint(
-            _keybinds.Player.MousePosition.ReadValue<Vector2>());
+            Keybinds.Player.MousePosition.ReadValue<Vector2>());
         map.LightUpCell(_mousePosition);
     }
 

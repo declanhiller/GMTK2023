@@ -8,9 +8,9 @@ namespace WeatherEvents {
 
         [SerializeField] private float maxNumberOfRagePoints;
 
-        private Slider _slider;
+        [SerializeField] private Slider _slider;
+        
         private void Start() {
-            _slider = GetComponent<Slider>();
             _slider.maxValue = maxNumberOfRagePoints;
             _slider.value = _slider.maxValue;
         }

@@ -34,6 +34,7 @@ namespace MapScripts {
                     Vector3Int localPos = new Vector3Int(i, j, (int) _tilemap.transform.position.y);
                     if (_tilemap.HasTile(localPos)) {
                         Cell cell = new Cell();
+                        cell.cellPosition = localPos;
                         _cells.Add(cell);
                     }
                 }
@@ -52,7 +53,6 @@ namespace MapScripts {
 
             
             if (!_tilemap.HasTile(gridPosition)) {
-                Debug.Log("Hello");
                 return;
             }
             _hoverTilemap.SetTile(gridPosition, hoverTile);
