@@ -15,57 +15,44 @@ namespace MapScripts {
         private bool occupied;
 
         private int foodAmount;
-        [SerializeField]private int woodAmount;
-        private int peopleAmount;
-        private int forestCount;
-
-        private static List<Vector3Int> neighbors = new List<Vector3Int> { Vector3Int.up, Vector3Int.down, Vector3Int.left, Vector3Int.right };
-
+        public int woodAmount;
 
         public void onClick()
         {
-            Debug.Log(cellPosition);
-            if (isExcavated)
-            {
-
-            }
+            if (isExcavated) return;
             Excavation();
         }
 
-        public void Excavation()
-        {
-            if (!HasNeighborExcavatedCell() || isExcavated)
-            { 
-                return;
-            }
-            if(forestCount <= 0)
+        public void Excavation() {
+            Debug.Log("Excavate");
+            if (!HasNeighborExcavatedCell()) return;
+            woodAmount--;
+            Debug.Log("Wood remaining in forest: " + woodAmount);
+            if(woodAmount <= 0)
             {
                 isExcavated = true;
+                map.DestroyForest(cellPosition);
             }
-            WoodExploration();
-            forestCount--;
-            Debug.Log(forestCount);
-        }
-
-        public bool Excavated()
-        {
-            return isExcavated;
-        }
-        public void WoodExploration()
-        {
-            ResourceManager.instance.WoodChange(woodAmount);
+            
+            ResourceManager.instance.WoodChange(1);
         }
 
         public bool HasNeighborExcavatedCell()
         {
-            foreach (Vector3Int offset in neighbors)
-            {
-                Cell neighborCell = map._cells.Where((c) => c.cellPosition.Equals(cellPosition + offset)).First();
-                    if (neighborCell.isExcavated)
+
+            for (int i = -1; i <= 1; i++) {
+                for (int j = -1; j <= 1; j++) {
+                    if(Math.Abs(i + j) != 1) continue;
+                    Vector3Int neighborCellPosition = new Vector3Int(i, j, 0) + this.cellPosition;
+                    Cell[] neighborCell = map._cells.Where(c => c.cellPosition.Equals(neighborCellPosition)).ToArray();
+                    if(neighborCell.Length == 0) continue;
+                    if (neighborCell[0].isExcavated)
                     {
                         return true;
                     }
+                }
             }
+
             return false;
         }
     }

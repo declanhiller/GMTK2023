@@ -4,6 +4,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Assertions.Must;
 using UnityEngine.Tilemaps;
+using Random = UnityEngine.Random;
 
 namespace MapScripts {
     public class Map : MonoBehaviour {
@@ -20,6 +21,7 @@ namespace MapScripts {
         private Grid _grid;
         [SerializeField] private Tilemap _tilemap;
         [SerializeField] private Tilemap _hoverTilemap;
+        [SerializeField] private Tilemap _forestTilemap;
 
         private void Start() {
             _grid = GetComponent<Grid>();
@@ -32,6 +34,11 @@ namespace MapScripts {
                     if (_tilemap.HasTile(localPos)) {
                         Cell cell = Instantiate(_cell).GetComponent<Cell>();
                         cell.cellPosition = localPos;
+
+                        cell.isExcavated = !_forestTilemap.HasTile(localPos);
+
+                        cell.woodAmount = Random.Range(25, 100);
+                        
                         cell.map = this;
                         _cells.Add(cell);
                     }
@@ -86,6 +93,10 @@ namespace MapScripts {
             Bounds tilemapLocalBounds = _tilemap.localBounds;
             return new Tuple<Vector2, Vector2>(tilemapLocalBounds.min + _tilemap.transform.position,
                 tilemapLocalBounds.max + _tilemap.transform.position);
+        }
+
+        public void DestroyForest(Vector3Int cellPosition) {
+            _forestTilemap.SetTile(cellPosition, null);
         }
     }
 }
