@@ -15,10 +15,14 @@ namespace WeatherEvents {
         [SerializeField] private float buildingRagePoints;
         [SerializeField] private float forestDestroyRagePoints;
         [SerializeField] private float animalDestroyRagePoints;
+        [SerializeField] private float towerDestroyRagePoints;
+
         [SerializeField] private float PlacingCostPoints;
 
 
         [SerializeField] private Map map;
+
+
 
         public float RagePoints {
             get => slider.value;
@@ -39,6 +43,7 @@ namespace WeatherEvents {
         }
 
         private void IncreaseRageBarForAnimalDeath(BasicEnemy obj) {
+            if(ResourceManager.instance.currentState == ResourceManager.State.human)
             RagePoints += animalDestroyRagePoints;
         }
 
@@ -61,6 +66,14 @@ namespace WeatherEvents {
                         }
                     }
                     break;
+            }
+        }
+
+        public void IncreaseRageBarForTowerDeath()
+        {
+            if(ResourceManager.instance.currentState == ResourceManager.State.nature)
+            {
+                RagePoints += towerDestroyRagePoints;
             }
         }
 
