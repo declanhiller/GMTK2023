@@ -30,7 +30,7 @@ namespace MapScripts {
             _cells = new List<Cell>();
             
             for (int i = _tilemap.cellBounds.xMin; i < _tilemap.cellBounds.xMax; i++) {
-                for (int j = _tilemap.cellBounds.xMin; j < _tilemap.cellBounds.yMax; j++) {
+                for (int j = _tilemap.cellBounds.yMin; j < _tilemap.cellBounds.yMax; j++) {
                     Vector3Int localPos = new Vector3Int(i, j, (int) _tilemap.transform.position.y);
                     if (_tilemap.HasTile(localPos)) {
                         Cell cell = new Cell();
