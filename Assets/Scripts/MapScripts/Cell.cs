@@ -12,7 +12,7 @@ namespace MapScripts {
 
         //example variables
         public bool isExcavated;
-        private bool occupied;
+        public bool isOccupiedByBuilding;
 
         private int foodAmount;
         public int woodAmount;

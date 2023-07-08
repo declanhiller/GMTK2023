@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Assertions.Must;
+using UnityEngine.Serialization;
 using UnityEngine.Tilemaps;
 using Random = UnityEngine.Random;
 
@@ -12,6 +13,8 @@ namespace MapScripts {
 
         [SerializeField] private TileBase hoverTile;
 
+        [SerializeField] private TileBase buildingTile;
+        
         public List<Cell> _cells;
 
         [SerializeField] private GameObject _cell;
@@ -21,7 +24,7 @@ namespace MapScripts {
         private Grid _grid;
         [SerializeField] private Tilemap _tilemap;
         [SerializeField] private Tilemap _hoverTilemap;
-        [SerializeField] private Tilemap _forestTilemap;
+        [FormerlySerializedAs("_forestTilemap")] [SerializeField] private Tilemap _forestAndBuildingTilemap;
 
         private void Start() {
             _grid = GetComponent<Grid>();
@@ -35,7 +38,7 @@ namespace MapScripts {
                         Cell cell = Instantiate(_cell).GetComponent<Cell>();
                         cell.cellPosition = localPos;
 
-                        cell.isExcavated = !_forestTilemap.HasTile(localPos);
+                        cell.isExcavated = !_forestAndBuildingTilemap.HasTile(localPos);
 
                         cell.woodAmount = Random.Range(25, 100);
                         
@@ -96,7 +99,12 @@ namespace MapScripts {
         }
 
         public void DestroyForest(Vector3Int cellPosition) {
-            _forestTilemap.SetTile(cellPosition, null);
+            _forestAndBuildingTilemap.SetTile(cellPosition, null);
+        }
+
+        public void PlaceBuildingInCell(Cell cell) {
+            cell.isOccupiedByBuilding = true;
+            _forestAndBuildingTilemap.SetTile(cell.cellPosition, buildingTile);
         }
     }
 }

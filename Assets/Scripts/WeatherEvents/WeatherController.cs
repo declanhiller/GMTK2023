@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using MapScripts;
+using Player;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
