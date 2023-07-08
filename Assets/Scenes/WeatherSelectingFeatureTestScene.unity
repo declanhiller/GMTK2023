@@ -339,7 +339,6 @@ MonoBehaviour:
   _tilemap: {fileID: 953859220}
   _hoverTilemap: {fileID: 677606597}
   _forestTilemap: {fileID: 1192890681}
-  basicTowerPrefab: {fileID: 4280801715753526804, guid: 571a5a334d27c40ffb4497123c5a4349, type: 3}
 --- !u!4 &330794331
 Transform:
   m_ObjectHideFlags: 0
@@ -811,6 +810,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   map: {fileID: 330794330}
   sensitivity: 0.4
+  towerPrefab: {fileID: 4280801715753526804, guid: 571a5a334d27c40ffb4497123c5a4349, type: 3}
+  enemyPrefab: {fileID: 5162092843021258021, guid: 379c2925f275e4df08860d169da17cbd, type: 3}
 --- !u!4 &594811436
 Transform:
   m_ObjectHideFlags: 0
@@ -2010,6 +2011,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6b70801438199a43b35c0edfebd26a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentState: 0
   dropWoodWait: 5
   dropFoodWait: 5
   populateWait: 5

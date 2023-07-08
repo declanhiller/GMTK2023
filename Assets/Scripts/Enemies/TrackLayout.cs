@@ -16,6 +16,10 @@ namespace Enemies {
             else Destroy(gameObject);
         }
 
+        public Vector3 GetMoveDirection()
+        {
+            return tracks[0].Direction;
+        }
 
         public Track GetRandomTrack() {
             return tracks[Random.Range(0, tracks.Count)];

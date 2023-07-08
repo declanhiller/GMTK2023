@@ -2,15 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System;
 
 public class ResourceManager : MonoBehaviour
 {
 
+    public enum State
+    {
+        human, nature
+    }
+
+    public State currentState;
+
     public static ResourceManager instance { get; private set; }
+
+    private int health;
 
     private int wood;
     private int food;
     private int people;
+
+    private Action onLoseEvent;
 
     [Header("Timer")]
     [SerializeField] private int dropWoodWait;
@@ -37,4 +49,17 @@ public class ResourceManager : MonoBehaviour
         Debug.Log("Amount of wood in bank: " + wood);
     }
 
+    public int Health
+    {
+        get => health;
+        set
+        {
+            health = value;
+            Debug.Log("Player current health: " + health);
+            if (value <= 0)
+            {
+                onLoseEvent?.Invoke();
+            }
+        }
+    }
 }
