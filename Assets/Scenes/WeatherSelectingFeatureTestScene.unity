@@ -349,6 +349,7 @@ MonoBehaviour:
   _tilemap: {fileID: 953859220}
   _hoverTilemap: {fileID: 677606597}
   _forestTilemap: {fileID: 1192890681}
+  woodRequirementForBasicBuilding: 0
 --- !u!4 &330794331
 Transform:
   m_ObjectHideFlags: 0
@@ -2021,6 +2022,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6b70801438199a43b35c0edfebd26a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentState: 0
 --- !u!4 &1014592938
 Transform:
   m_ObjectHideFlags: 0
@@ -4133,6 +4135,7 @@ MonoBehaviour:
   buildingRagePoints: 50
   forestDestroyRagePoints: 15
   animalDestroyRagePoints: 3
+  PlacingCostPoints: 100
   map: {fileID: 330794330}
   slider: {fileID: 1969967431}
 --- !u!1 &2020378375

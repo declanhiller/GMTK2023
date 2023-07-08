@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using System;
+using WeatherEvents;
 
 public class ResourceManager : MonoBehaviour
 {
@@ -19,7 +20,7 @@ public class ResourceManager : MonoBehaviour
     private int health;
 
     private int wood;
-    
+
     public int Wood {
         get => wood;
         set {
@@ -27,7 +28,7 @@ public class ResourceManager : MonoBehaviour
             Debug.Log("Amount of Wood in bank: " + value);
         }
     }
-    private Action onLoseEvent;
+    public Action onLoseEvent;
     
 
 

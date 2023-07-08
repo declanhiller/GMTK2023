@@ -8,9 +8,15 @@ namespace Towers {
         [SerializeField] private float health;
 
         public event Action OnZeroHealth;
+        public static int towersCount;
 
         public HealthAttribute(float health) {
             this.health = health;
+        }
+
+        private void Awake()
+        {
+            towersCount++;
         }
 
         public float Health {
@@ -20,6 +26,8 @@ namespace Towers {
                 if(value <= 0) {
                     OnZeroHealth?.Invoke();
                     Destroy(gameObject, 0.05f);
+                    towersCount--;
+                    Debug.Log("Remain tower:" + towersCount);
                 }
             } 
         }
