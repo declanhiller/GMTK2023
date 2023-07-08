@@ -111,7 +111,8 @@ namespace MapScripts {
 
         public void PlaceBuildingInCell(Cell cell) {
             cell.isOccupiedByBuilding = true;
-            // _forestTilemap.SetTile(cell.cellPosition, buildingTile);
+            _forestTilemap.SetTile(cell.cellPosition, buildingTile);
+            _forestTilemap.RefreshTile(cell.cellPosition);
             GameObject basicTower = Instantiate(basicTowerPrefab, cell.transform.position, Quaternion.identity, cell.transform);
             OnMapEvent?.Invoke(MapEvent.BuildingPlaced);
             
