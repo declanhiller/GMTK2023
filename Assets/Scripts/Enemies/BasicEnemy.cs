@@ -29,7 +29,7 @@ namespace Enemies {
             }
         }
 
-        private Track _track;
+        [NonSerialized] public Track track;
 
 
         private float _timer;
@@ -40,14 +40,13 @@ namespace Enemies {
         
 
         private void Start() {
-            _track = TrackLayout.Instance.GetRandomTrack();
             StartCoroutine(TowerCheck());
         }
 
         private IEnumerator TowerCheck() {
             while (true) {
                 if (_currentlyAttacking) yield break;
-                RaycastHit2D hit = Physics2D.Raycast(transform.position, _track.Direction, 0.4f, towerMask);
+                RaycastHit2D hit = Physics2D.Raycast(transform.position, track.Direction, 0.4f, towerMask);
                 if (hit.transform != null) {
                     _currentlyAttacking = true;
                     _currentAttackingTower = hit.transform.GetComponent<HealthAttribute>();
@@ -76,7 +75,7 @@ namespace Enemies {
                 return;
             }
             
-            transform.Translate(speed * _track.Direction * Time.deltaTime);
+            transform.Translate(speed * track.Direction * Time.deltaTime);
             
         }
     }
