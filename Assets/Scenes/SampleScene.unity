@@ -232,6 +232,8 @@ MonoBehaviour:
   height: 0
   startTile: {x: 0, y: 0}
   hoverTile: {fileID: 11400000, guid: aa1ac0bda70764901a9f2da77e9be895, type: 2}
+  _cells: []
+  _cell: {fileID: 5459907812715591288, guid: c9293a181e8e5f84da1ba753e876cd7c, type: 3}
   _tilemap: {fileID: 1441755234}
   _hoverTilemap: {fileID: 1645008174}
 --- !u!1 &519420028
@@ -325,6 +327,61 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &921094486
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 921094488}
+  - component: {fileID: 921094487}
+  m_Layer: 0
+  m_Name: ResourceManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &921094487
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 921094486}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6b70801438199a43b35c0edfebd26a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dropWoodWait: 0
+  dropFoodWait: 0
+  populateWait: 0
+  dropWoodRate: 0
+  dropFoodRate: 0
+  populateRate: 0
+  populationLimit: 0
+  dropWoodAmount: 0
+  dropFoodAmount: 0
+  woodDisplay: {fileID: 0}
+  foodDisplay: {fileID: 0}
+--- !u!4 &921094488
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 921094486}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1441755231
 GameObject:

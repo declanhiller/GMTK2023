@@ -11,7 +11,9 @@ namespace MapScripts {
 
         [SerializeField] private TileBase hoverTile;
 
-        private List<Cell> _cells;
+        public List<Cell> _cells;
+
+        [SerializeField] private GameObject _cell;
 
         private Vector3Int _currentHoveringOverCellPosition;
 
@@ -28,8 +30,9 @@ namespace MapScripts {
                 for (int j = _tilemap.cellBounds.yMin; j < _tilemap.cellBounds.yMax; j++) {
                     Vector3Int localPos = new Vector3Int(i, j, (int) _tilemap.transform.position.y);
                     if (_tilemap.HasTile(localPos)) {
-                        Cell cell = new Cell();
+                        Cell cell = Instantiate(_cell).GetComponent<Cell>();
                         cell.cellPosition = localPos;
+                        cell.map = this;
                         _cells.Add(cell);
                     }
                 }
@@ -51,6 +54,15 @@ namespace MapScripts {
                 return;
             }
             _hoverTilemap.SetTile(gridPosition, hoverTile);
+
+        }
+
+        public void ClickCell(Vector3 position)
+        {
+            if (HasCell(position, out Cell currentCell))
+            {
+                currentCell?.onClick();
+            }
         }
 
         public bool HasCell(Vector3 position, out Cell cell) {
