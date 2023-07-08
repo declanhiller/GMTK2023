@@ -3,6 +3,7 @@ using System.Collections;
 using MapScripts;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Enemies;
 
 
 // Simple player controller just for testing... will probably need to be refactored... maybe
@@ -23,6 +24,7 @@ namespace Player {
         [SerializeField] private GameObject enemyPrefab;
 
 
+        private float spawnCoolDown;
 
         private Coroutine _dragCoroutine;
 
@@ -64,6 +66,7 @@ namespace Player {
         // Update is called once per frame
         void Update() {
             Hover();
+            spawnCoolDown -= Time.deltaTime;
         }
 
         private void Hover() {
@@ -77,16 +80,20 @@ namespace Player {
             if (!cell.isExcavated) return;
             if (cell.isOccupiedByBuilding) return;
 
-            switch (ResourceManager.instance.currentState)
+            if(spawnCoolDown < 0)
             {
-                case ResourceManager.State.human:
-                    map.PlaceUnitInCell(cell, towerPrefab);
-                    break;
-                case ResourceManager.State.nature:
-                    map.PlaceUnitInCell(cell, enemyPrefab);
-                    break;
+                switch (ResourceManager.instance.currentState)
+                {
+                    case ResourceManager.State.human:
+                        map.PlaceUnitInCell(cell, towerPrefab);
+                        spawnCoolDown = 0;
+                        break;
+                    case ResourceManager.State.nature:
+                        map.PlaceUnitInCell(cell, enemyPrefab);
+                        spawnCoolDown = enemyPrefab.GetComponent<BasicEnemy>().placeCoolDown;
+                        break;
+                }
             }
-
         }
 
         private void StartDrag(InputAction.CallbackContext context) {

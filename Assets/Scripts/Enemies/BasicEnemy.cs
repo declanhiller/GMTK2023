@@ -18,6 +18,8 @@ namespace Enemies {
 
         [SerializeField] private float maxHealth;
 
+        public float placeCoolDown;
+
         private static Vector3 moveDirection;
 
         public float Health {
