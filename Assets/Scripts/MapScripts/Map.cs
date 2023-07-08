@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -13,7 +14,7 @@ namespace MapScripts {
 
         [SerializeField] private TileBase hoverTile;
 
-        private List<Cell> _cell;
+        private List<Cell> _cells;
 
         private Vector3Int _currentHoveringOverCellPosition;
 
@@ -25,14 +26,15 @@ namespace MapScripts {
             _grid = GetComponent<Grid>();
             _grid.GetCellCenterWorld((Vector3Int) startTile);
 
-            // for (int i = _tilemap.cellBounds.xMin; i < _tilemap.cellBounds.xMax; i++) {
-            //     for (int j = _tilemap.cellBounds.xMin; j < _tilemap.cellBounds.yMax; j++) {
-            //         Vector3Int localPos = new Vector3Int(i, j, (int) _tilemap.transform.position.y);
-            //         if (_tilemap.HasTile(localPos)) {
-            //             
-            //         }
-            //     }
-            // }
+            for (int i = _tilemap.cellBounds.xMin; i < _tilemap.cellBounds.xMax; i++) {
+                for (int j = _tilemap.cellBounds.xMin; j < _tilemap.cellBounds.yMax; j++) {
+                    Vector3Int localPos = new Vector3Int(i, j, (int) _tilemap.transform.position.y);
+                    if (_tilemap.HasTile(localPos)) {
+                        Cell cell = new Cell();
+                        _cells.Add(cell);
+                    }
+                }
+            }
             
         }
 
@@ -53,8 +55,21 @@ namespace MapScripts {
             _hoverTilemap.SetTile(gridPosition, hoverTile);
         }
 
-        public void GetCell(Vector3 position) {
-            Vector3Int worldToCell = _grid.WorldToCell(position);
+        public bool HasCell(Vector3 position, out Cell cell) {
+            Vector3Int gridPosition = _grid.WorldToCell(position);
+            if (!_tilemap.HasTile(gridPosition)) {
+                cell = null;
+                return false;
+            }
+
+            Cell[] cells = _cells.Where((c) => c.cellPosition.Equals(gridPosition)).ToArray();
+            if (cells.Length != 1) {
+                throw new Exception("Lmao wtf, there is " + cells.Length + " at this position" +
+                                    "when there should only be one");
+            }
+
+            cell = cells.First();
+            return true;
         }
 
     }
