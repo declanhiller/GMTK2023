@@ -48,6 +48,17 @@ namespace MapScripts {
 
         [SerializeField] public GameObject basicTowerPrefab;
 
+        [SerializeField] public GameObject clickSoundObject;
+        [SerializeField] public GameObject treeDestructionSoundObject;
+
+        public void PlayClickSound()
+        {
+            clickSoundObject.GetComponent<AudioSource>().Play();
+        }
+        public void PlayTreeDestructionSound()
+        {
+            treeDestructionSoundObject.GetComponent<AudioSource>().Play();
+        }
         private void Start() {
 
             _resourceManager = ResourceManager.instance;

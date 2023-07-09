@@ -27,18 +27,16 @@ namespace MapScripts {
 
         [FormerlySerializedAs("woodAmount")] public int woodInForest;
 
-        private AudioSource mouseClickSound;
-
         public void Awake()
         {
-            mouseClickSound = GetComponent<AudioSource>();
+
         }
 
         public void onClick()
         {
             if (isExcavated) return;
             Excavation();
-            mouseClickSound.Play();
+            map.PlayClickSound();
         }
 
         public void onclickHurt()
@@ -58,6 +56,7 @@ namespace MapScripts {
             {
                 isExcavated = true;
                 if (isSpecialTree) {
+                    map.PlayTreeDestructionSound();
                     ResourceManager.instance.CurrentState = ResourceManager.State.nature;
                 }
                 map.DestroyForest(cellPosition);
