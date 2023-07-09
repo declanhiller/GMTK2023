@@ -27,10 +27,18 @@ namespace MapScripts {
 
         [FormerlySerializedAs("woodAmount")] public int woodInForest;
 
+        private AudioSource mouseClickSound;
+
+        public void Awake()
+        {
+            mouseClickSound = GetComponent<AudioSource>();
+        }
+
         public void onClick()
         {
             if (isExcavated) return;
             Excavation();
+            mouseClickSound.Play();
         }
 
         public void onclickHurt()

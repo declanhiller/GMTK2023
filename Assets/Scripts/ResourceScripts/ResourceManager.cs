@@ -26,19 +26,21 @@ public class ResourceManager : MonoBehaviour
 
     private State _currentState;
 
-    private event Action<State> OnStateChange;
+    public static event Action<State> OnStateChange;
 
     public static ResourceManager instance { get; private set; }
 
     private int health;
 
     private int wood;
-
+    
+    public static event Action<int> OnWoodChange;
+    
     public int Wood {
         get => wood;
         set {
             wood = value;
-            Debug.Log("Amount of Wood in bank: " + value);
+            OnWoodChange?.Invoke(value);
         }
     }
     public Action onLoseEvent;

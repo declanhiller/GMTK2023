@@ -19,7 +19,10 @@ namespace Towers {
         private List<BasicEnemy> _enemiesInRange;
         private bool _isFiring;
 
+        private AudioSource fireSound;
+
         private void Start() {
+            fireSound = GetComponent<AudioSource>();
             _enemiesInRange = new List<BasicEnemy>();
             float width = range * 1.5f;
             float height = range;
@@ -62,6 +65,7 @@ namespace Towers {
         }
 
         private IEnumerator Fire() {
+             fireSound.Play();
             _isFiring = true;
             while (_enemiesInRange.Count != 0) {
                 GameObject bullet = Instantiate(projectilePrefab, firePoint.position, Quaternion.identity);
