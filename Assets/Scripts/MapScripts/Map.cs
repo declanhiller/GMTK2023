@@ -173,6 +173,9 @@ namespace MapScripts {
             cell.isOccupiedByBuilding = true;
             _forestTilemap.SetTile(cell.cellPosition, animatedSawBuildingTile);
             GameObject basicTower = Instantiate(basicTowerPrefab, cell.transform.position, Quaternion.identity, cell.transform);
+            HealthAttribute tower = basicTower.GetComponent<HealthAttribute>();
+            tower.cell = cell;
+            tower.map = this;
             OnMapEvent?.Invoke(MapEvent.BuildingPlaced);
             
         }
@@ -192,6 +195,10 @@ namespace MapScripts {
             else {
                 _tilemap.SetTile(cell.cellPosition, deadForestTile);
             }
+        }
+
+        public void RemoveBuilding(Cell cell) {
+            _forestTilemap.SetTile(cell.cellPosition, null);
         }
     }
 }
