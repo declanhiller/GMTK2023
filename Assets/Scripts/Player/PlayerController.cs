@@ -38,6 +38,8 @@ namespace Player {
         
         private Vector3 _min;
         private Vector3 _max;
+
+        private bool _isActive = true;
         
         private void Awake() {
             Keybinds = new Keybinds();
@@ -60,22 +62,19 @@ namespace Player {
 
             _resourceManager = ResourceManager.instance;
 
-            _resourceManager.onLoseEvent += SwitchClickMode;
+            ResourceManager.OnColonialLose += () => { _isActive = false;};
         }
 
         public void OnClick(InputAction.CallbackContext context) {
+            if (!_isActive) return;
             if (currentClickCD > 0)
                 return;
             _mousePosition = _mainCamera.ScreenToWorldPoint(
                 Keybinds.Player.MousePosition.ReadValue<Vector2>());
             map.ClickCell(_mousePosition);
         }
-
-        private void SwitchClickMode()
-        {
-            currentClickCD = clickCoolDown;
-        }
-
+        
+        
         // Update is called once per frame
         void Update() {
             Hover();

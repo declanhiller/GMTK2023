@@ -63,7 +63,6 @@ namespace WeatherEvents {
                         if (HealthAttribute.towersCount > 0)
                         {
                             Debug.Log("You Lose!");
-                            ResourceManager.instance.onLoseEvent?.Invoke();
                         }
                     }
                     break;

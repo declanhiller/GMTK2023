@@ -31,6 +31,7 @@ public class ResourceManager : MonoBehaviour
     public static ResourceManager instance { get; private set; }
 
     private int health;
+    public int startingMaxHealth;
 
     private int wood;
     
@@ -43,7 +44,7 @@ public class ResourceManager : MonoBehaviour
             OnWoodChange?.Invoke(value);
         }
     }
-    public Action onLoseEvent;
+    public static event Action OnColonialLose;
     
 
 
@@ -51,7 +52,10 @@ public class ResourceManager : MonoBehaviour
     {
         if (instance == null) instance = this;
         else Destroy(gameObject);
+        health = startingMaxHealth;
     }
+
+    public static event Action<float> OnHealthChange;
 
     public int Health
     {
@@ -59,11 +63,11 @@ public class ResourceManager : MonoBehaviour
         set
         {
             health = value;
-            Debug.Log("Player current health: " + health);
-            if (value <= 0)
-            {
-                onLoseEvent?.Invoke();
-            }
+            OnHealthChange?.Invoke(value);
+            if (value > 0) return;
+            health = 0;
+            Debug.Log("Colonial Lose");
+            OnColonialLose?.Invoke();
         }
     }
 }

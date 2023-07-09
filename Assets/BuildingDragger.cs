@@ -25,9 +25,11 @@ public class BuildingDragger : MonoBehaviour, IPointerDownHandler, IPointerUpHan
     [SerializeField] private Image icon;
 
     [SerializeField] private Color notReadyColor = new Color(255, 90, 50);
+    private bool _isActive = true;
 
     private void Start() {
         ResourceManager.OnWoodChange += (wood) => { icon.color = wood < requiredAmountOfWood ? notReadyColor : Color.white; };
+        ResourceManager.OnColonialLose += () => _isActive = false;
     }
 
     private void Awake() {
@@ -56,6 +58,7 @@ public class BuildingDragger : MonoBehaviour, IPointerDownHandler, IPointerUpHan
     }
 
     public void OnPointerDown(PointerEventData eventData) {
+        if (!_isActive) return;
         if (eventData.button != PointerEventData.InputButton.Left) return;
         if (ResourceManager.instance.Wood < requiredAmountOfWood) return;
         _draggingObject = Instantiate(towerDraggingPrefab);
