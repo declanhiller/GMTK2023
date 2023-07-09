@@ -109,7 +109,7 @@ namespace DefaultNamespace {
 
         IEnumerator EndCutScene()
         {
-            yield return new WaitForSeconds(3f);
+            yield return new WaitForSeconds(15f);
             dialogueBox.SetActive(false);
             UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex + 1);
         }
