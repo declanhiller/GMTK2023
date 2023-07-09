@@ -46,8 +46,7 @@ public class BuildingDragger : MonoBehaviour, IPointerDownHandler, IPointerUpHan
         Destroy(_draggingObject);
         isDragging = false;
         map.buildingHoverTilemap.ClearAllTiles();
-        Cell cell;
-        if (map.isValidSpotToBuild && map.HasCell(player._mousePosition, out cell)) {
+        if (map.isValidSpotToBuild && map.HasCell(player._mousePosition, out Cell cell)) {
             player.PlaceUnit();
         }
         

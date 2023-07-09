@@ -16,7 +16,8 @@ namespace WeatherEvents {
         [SerializeField] private float forestDestroyRagePoints;
         [SerializeField] private float animalDestroyRagePoints;
         [SerializeField] private float towerDestroyRagePoints;
-
+        
+        [SerializeField] private float regrowCostPoints;
         [SerializeField] private float PlacingCostPoints;
 
 
@@ -65,6 +66,9 @@ namespace WeatherEvents {
                             ResourceManager.instance.onLoseEvent?.Invoke();
                         }
                     }
+                    break;
+                case Map.MapEvent.RegrowTree:
+                    RagePoints -= regrowCostPoints;
                     break;
             }
         }

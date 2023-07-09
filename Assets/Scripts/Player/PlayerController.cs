@@ -4,6 +4,7 @@ using MapScripts;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Enemies;
+using Towers;
 
 
 // Simple player controller just for testing... will probably need to be refactored... maybe
@@ -25,6 +26,9 @@ namespace Player {
 
         [SerializeField] private BuildingDragger dragger;
 
+        [SerializeField] private float clickCoolDown = 1;
+
+        private float currentClickCD;
 
         private float spawnCoolDown;
 
@@ -55,18 +59,32 @@ namespace Player {
             _max = boundingPoints.Item2;
 
             _resourceManager = ResourceManager.instance;
+
+            _resourceManager.onLoseEvent += SwitchClickMode;
         }
 
         public void OnClick(InputAction.CallbackContext context) {
+            if (currentClickCD > 0)
+                return;
             _mousePosition = _mainCamera.ScreenToWorldPoint(
                 Keybinds.Player.MousePosition.ReadValue<Vector2>());
             map.ClickCell(_mousePosition);
+        }
+
+        private void SwitchClickMode()
+        {
+            currentClickCD = clickCoolDown;
         }
 
         // Update is called once per frame
         void Update() {
             Hover();
             spawnCoolDown -= Time.deltaTime;
+            
+            if(_resourceManager.CurrentState == ResourceManager.State.nature)
+            {
+                currentClickCD -= Time.deltaTime;
+            }
         }
 
         private void Hover() {

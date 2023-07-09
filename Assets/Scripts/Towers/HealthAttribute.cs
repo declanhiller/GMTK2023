@@ -31,7 +31,18 @@ namespace Towers {
             set {
                 health = value;
                 if(value <= 0) {
-                    map.RemoveBuilding(cell);
+                    switch (ResourceManager.instance.CurrentState)
+                    {
+                        case ResourceManager.State.human:
+                            map.RemoveBuilding(cell);
+                            break;
+                        case ResourceManager.State.nature:
+                            map.RegrowForest(cell.cellPosition);
+                            break;
+                        default:
+                            break;
+                    }
+                    
                     OnZeroHealth?.Invoke();
                     Destroy(gameObject, 0.05f);
                     towersCount--;

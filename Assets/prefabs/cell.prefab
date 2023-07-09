@@ -46,5 +46,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cellPosition: {x: 0, y: 0, z: 0}
   map: {fileID: 0}
+  _startWoodAmount: 0
+  isSpecialTree: 0
   isExcavated: 1
-  woodAmount: 1
+  isOccupiedByBuilding: 0
+  clickDamage: 100
+  unit: {fileID: 0}
+  woodInForest: 1

@@ -5,6 +5,7 @@ using System;
 using System.Linq;
 using System.Collections.Generic;
 using UnityEngine.Serialization;
+using Towers;
 
 namespace MapScripts {
     public class Cell : MonoBehaviour {
@@ -20,13 +21,22 @@ namespace MapScripts {
         public bool isExcavated;
         public bool isOccupiedByBuilding;
 
-        private int foodAmount;
+        [SerializeField] private float clickDamage;
+
+        public HealthAttribute unit;
+
         [FormerlySerializedAs("woodAmount")] public int woodInForest;
 
         public void onClick()
         {
             if (isExcavated) return;
             Excavation();
+        }
+
+        public void onclickHurt()
+        {
+            if(unit != null)
+                unit.Health -= clickDamage;
         }
 
         public void Excavation() {
@@ -40,7 +50,6 @@ namespace MapScripts {
             {
                 isExcavated = true;
                 if (isSpecialTree) {
-                    Debug.Log("Change State");
                     ResourceManager.instance.CurrentState = ResourceManager.State.nature;
                 }
                 map.DestroyForest(cellPosition);

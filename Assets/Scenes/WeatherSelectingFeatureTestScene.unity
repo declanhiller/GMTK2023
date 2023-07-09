@@ -468,6 +468,7 @@ MonoBehaviour:
   buildingErrorTile: {fileID: 11400000, guid: 95021a3ac62d74cc78fe22d87fa98683, type: 2}
   buildingOkTile: {fileID: 11400000, guid: 9ec210a11112c46bfb8238f65524ecbf, type: 2}
   waypoint: {fileID: 11400000, guid: 2ed398b3522624677b8184b725241953, type: 2}
+  treeTile: {fileID: 0}
   aliveForestTile: {fileID: 11400000, guid: c3cf7c4058e894918a200c8bf37c62b4, type: 2}
   semiDeadForestTile: {fileID: 11400000, guid: 0ac1a2da6761f42cf94ecb4d00611c94, type: 2}
   deadForestTile: {fileID: 11400000, guid: 0ac1a2da6761f42cf94ecb4d00611c94, type: 2}
@@ -955,6 +956,7 @@ MonoBehaviour:
   towerPrefab: {fileID: 4280801715753526804, guid: 571a5a334d27c40ffb4497123c5a4349, type: 3}
   enemyPrefab: {fileID: 5162092843021258021, guid: 379c2925f275e4df08860d169da17cbd, type: 3}
   dragger: {fileID: 1703671073}
+  clickCoolDown: 1
 --- !u!4 &594811436
 Transform:
   m_ObjectHideFlags: 0
@@ -4438,6 +4440,7 @@ MonoBehaviour:
   forestDestroyRagePoints: 15
   animalDestroyRagePoints: 3
   towerDestroyRagePoints: 0
+  regrowCostPoints: 0
   PlacingCostPoints: 100
   map: {fileID: 330794330}
   slider: {fileID: 1969967431}

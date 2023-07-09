@@ -19,6 +19,7 @@ public class ResourceManager : MonoBehaviour
 
         set {
             _currentState = value;
+            Debug.Log("State Changed");
             OnStateChange?.Invoke(value);
         }
     }

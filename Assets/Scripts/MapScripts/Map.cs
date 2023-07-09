@@ -24,6 +24,7 @@ namespace MapScripts {
 
         [SerializeField] private TileBase waypoint;
 
+        [SerializeField] private TileBase treeTile;
         [SerializeField] private TileBase aliveForestTile;
         [SerializeField] private TileBase semiDeadForestTile;
         [SerializeField] private TileBase deadForestTile;
@@ -133,6 +134,15 @@ namespace MapScripts {
         {
             if (HasCell(position, out Cell currentCell))
             {
+                switch (ResourceManager.instance.CurrentState)
+                {
+                    case ResourceManager.State.human:
+                        currentCell?.onClick();
+                        break;
+                    case ResourceManager.State.nature:
+                        currentCell?.onclickHurt();
+                        break;
+                }
                 currentCell?.onClick();
             }
         }
@@ -165,6 +175,12 @@ namespace MapScripts {
             _forestTilemap.SetTile(cellPosition, null);
         }
 
+        public void RegrowForest(Vector3Int cellPosition)
+        {
+            OnMapEvent?.Invoke(MapEvent.RegrowTree);
+            _forestTilemap.SetTile(cellPosition, treeTile);
+        }
+
         public void PlaceUnitInCell(Cell cell, GameObject placingUnit) {
             if (_resourceManager.Wood < woodRequirementForBasicBuilding) return;
             cell.isOccupiedByBuilding = true;
@@ -183,12 +199,13 @@ namespace MapScripts {
             HealthAttribute tower = basicTower.GetComponent<HealthAttribute>();
             tower.cell = cell;
             tower.map = this;
+            cell.unit = tower;
             OnMapEvent?.Invoke(MapEvent.BuildingPlaced);
             
         }
 
         public enum MapEvent {
-            BuildingPlaced, ForestDestroyed, PlacingWolf
+            BuildingPlaced, ForestDestroyed, PlacingWolf, RegrowTree
         }
 
 
