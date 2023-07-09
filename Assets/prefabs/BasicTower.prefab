@@ -127,7 +127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f23996d7cf5345f5a1481185d304f4f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 300
+  health: 100
   cell: {fileID: 0}
   map: {fileID: 0}
 --- !u!114 &392114124703542305
@@ -142,9 +142,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 759c6a1c93924522a529ae5d2446f6bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletSpeed: 20
-  fireRate: 0.3
-  range: 5
+  bulletSpeed: 11
+  fireRate: 0.4
+  range: 6
   damage: 15
   firePoint: {fileID: 6157473345717578530}
   projectilePrefab: {fileID: 3397490346511135827, guid: 8b61aaabc826c4fcaba8bf4f2f467d0b, type: 3}

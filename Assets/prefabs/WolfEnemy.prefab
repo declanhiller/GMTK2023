@@ -123,13 +123,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 4
-  attackDuration: 0.5
-  damage: 0
+  attackDuration: 1
+  damage: 20
   towerMask:
     serializedVersion: 2
     m_Bits: 128
-  maxHealth: 10
-  placeCoolDown: 0
+  maxHealth: 90
+  placeCoolDown: 5
 --- !u!50 &453253150194485571
 Rigidbody2D:
   serializedVersion: 4

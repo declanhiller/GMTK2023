@@ -8984,8 +8984,8 @@ MonoBehaviour:
   isDragging: 0
   draggingPrefab: {fileID: 1195215531339410211, guid: 6cd731f1823dd45dd9ecec222405b617, type: 3}
   icon: {fileID: 297993200}
-  price: 20
-  cooldown: 8
+  price: 125
+  cooldown: 16
   displayedTimer: {fileID: 427627181}
   selectedColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &298004909
@@ -9018,11 +9018,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 4487627008063215977, guid: e56486f83c84c4f9bb9f06b9d5d6de4d, type: 3}
-  startMinTime: 8
-  startMaxTime: 11
+  startMinTime: 20
+  startMaxTime: 26
   endMinTime: 3
   endMaxTime: 5
-  timeToReachEnd: 45
+  timeToReachEnd: 38
 --- !u!4 &298004911
 Transform:
   m_ObjectHideFlags: 0
@@ -11663,7 +11663,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _gameHasEnded: 0
-  startingMaxHealth: 100
+  startingMaxHealth: 165
 --- !u!4 &1014592938
 Transform:
   m_ObjectHideFlags: 0
@@ -14539,8 +14539,8 @@ MonoBehaviour:
   isDragging: 0
   draggingPrefab: {fileID: 1195215531339410211, guid: 6cd731f1823dd45dd9ecec222405b617, type: 3}
   icon: {fileID: 1571660588}
-  price: 10
-  cooldown: 5
+  price: 30
+  cooldown: 3
   displayedTimer: {fileID: 1761831134}
   selectedColor: {r: 1, g: 0.6084906, b: 0.6084906, a: 1}
 --- !u!114 &1571660588
@@ -16283,7 +16283,7 @@ MonoBehaviour:
   buildingRagePoints: 50
   forestDestroyRagePoints: 15
   animalDestroyRagePoints: 3
-  towerDestroyRagePoints: 0
+  towerDestroyRagePoints: 20
   regrowCostPoints: 0
   PlacingCostPoints: 100
   map: {fileID: 330794330}
