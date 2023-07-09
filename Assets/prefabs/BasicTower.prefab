@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3885111417675148758}
-  - component: {fileID: 6908335170756276039}
+  - component: {fileID: 533661531905766724}
   m_Layer: 8
   m_Name: DetectionArea
   m_TagString: Untagged
@@ -32,8 +32,8 @@ Transform:
   m_Father: {fileID: 1321396861610840787}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!58 &6908335170756276039
-CircleCollider2D:
+--- !u!61 &533661531905766724
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -65,8 +65,18 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &4280801715753526804
 GameObject:
   m_ObjectHideFlags: 0
@@ -137,7 +147,7 @@ MonoBehaviour:
   _enemyLayerMask:
     serializedVersion: 2
     m_Bits: 64
-  collider: {fileID: 6908335170756276039}
+  collider: {fileID: 533661531905766724}
 --- !u!61 &3389472324103547031
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -181,7 +191,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2, y: 2}
+  m_Size: {x: 35, y: 35}
   m_EdgeRadius: 0
 --- !u!1 &4506176988738505419
 GameObject:

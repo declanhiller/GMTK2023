@@ -14,14 +14,17 @@ namespace Towers {
         [SerializeField] private Transform firePoint;
         [FormerlySerializedAs("projectile")] [SerializeField] private GameObject projectilePrefab;
         [SerializeField] private LayerMask _enemyLayerMask;
-        [SerializeField] private CircleCollider2D collider;
+        [SerializeField] private BoxCollider2D collider;
 
         private List<BasicEnemy> _enemiesInRange;
         private bool _isFiring;
 
         private void Start() {
             _enemiesInRange = new List<BasicEnemy>();
-            collider.radius = range;
+            float width = range * 1.5f;
+            float height = range;
+            collider.size = new Vector2(width, height);
+            Debug.Log(collider.size);
         }
 
 
