@@ -25,7 +25,7 @@ public class ResourceManager : MonoBehaviour
 
     private State _currentState;
 
-    private event Action<State> OnStateChange;
+    public static event Action<State> OnStateChange;
 
     public static ResourceManager instance { get; private set; }
 
