@@ -6,6 +6,7 @@ using MapScripts;
 using TMPro;
 using Towers;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
@@ -98,7 +99,6 @@ namespace DefaultNamespace {
 
         void LoadCutScene()
         {
-            colonialTextbox.text = startSceneDialogue;
             StartCoroutine(EndCutScene());
         }
 
@@ -111,7 +111,7 @@ namespace DefaultNamespace {
         {
             yield return new WaitForSeconds(15f);
             dialogueBox.SetActive(false);
-            UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex + 1);
+            UnityEngine.SceneManagement.SceneManager.LoadScene("GameScreen");
         }
 
     }

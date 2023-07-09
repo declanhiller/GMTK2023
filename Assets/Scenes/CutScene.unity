@@ -486,7 +486,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   colonialDialogues: []
   natureDialogues: []
-  startSceneDialogue: EVERYONE PLEASE COME PLAY OUR GAME!!!!!!!!!!!
+  startSceneDialogue: 
   map: {fileID: 0}
   image: {fileID: 0}
   dialogueBox: {fileID: 551283757}
