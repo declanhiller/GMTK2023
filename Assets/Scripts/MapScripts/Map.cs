@@ -48,6 +48,8 @@ namespace MapScripts {
 
         [SerializeField] public GameObject basicTowerPrefab;
 
+        [SerializeField] private AudioSource mouseClickSound;
+
         private void Start() {
 
             _resourceManager = ResourceManager.instance;
