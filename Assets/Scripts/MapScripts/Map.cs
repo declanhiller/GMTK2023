@@ -43,7 +43,7 @@ namespace MapScripts {
         [SerializeField] public Tilemap buildingHoverTilemap;
 
         private ResourceManager _resourceManager;
-        [SerializeField] private float woodRequirementForBasicBuilding; //eventually move this so it's in a SO
+        [SerializeField] public float woodRequirementForBasicBuilding; //eventually move this so it's in a SO
 
         [SerializeField] public GameObject basicTowerPrefab;
 
@@ -166,7 +166,6 @@ namespace MapScripts {
         }
 
         public void PlaceUnitInCell(Cell cell, GameObject placingUnit) {
-            if (_resourceManager.Wood < woodRequirementForBasicBuilding) return;
             cell.isOccupiedByBuilding = true;
             // _forestTilemap.SetTile(cell.cellPosition, buildingTile);
             Instantiate(placingUnit, cell.transform.position, Quaternion.identity, cell.transform);
@@ -180,6 +179,7 @@ namespace MapScripts {
             cell.isOccupiedByBuilding = true;
             _forestTilemap.SetTile(cell.cellPosition, animatedSawBuildingTile);
             GameObject basicTower = Instantiate(basicTowerPrefab, cell.transform.position, Quaternion.identity, cell.transform);
+            ResourceManager.instance.Wood -= BuildingDragger.Instance.requiredAmountOfWood;
             HealthAttribute tower = basicTower.GetComponent<HealthAttribute>();
             tower.cell = cell;
             tower.map = this;

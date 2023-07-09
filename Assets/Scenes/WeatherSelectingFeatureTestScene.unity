@@ -6025,6 +6025,7 @@ GameObject:
   - component: {fileID: 536257945}
   - component: {fileID: 536257947}
   - component: {fileID: 536257946}
+  - component: {fileID: 536257948}
   m_Layer: 5
   m_Name: WoodCounterBackground
   m_TagString: Untagged
@@ -6091,6 +6092,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 536257944}
   m_CullTransparentMesh: 1
+--- !u!114 &536257948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 536257944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: adfe6b45026a487bb4f78c6890134c16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  woodText: {fileID: 1888599550}
 --- !u!1 &545858076
 GameObject:
   m_ObjectHideFlags: 0
@@ -7551,7 +7565,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6b70801438199a43b35c0edfebd26a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: {fileID: 1888599550}
 --- !u!4 &1014592938
 Transform:
   m_ObjectHideFlags: 0
@@ -8696,7 +8709,7 @@ Tilemap:
       - {fileID: -1815461559, guid: c6a9042f900d44de38348eab4d09cd4a, type: 3}
       - {fileID: -574316034, guid: c6a9042f900d44de38348eab4d09cd4a, type: 3}
       - {fileID: 1284248302, guid: c6a9042f900d44de38348eab4d09cd4a, type: 3}
-      m_AnimationSpeed: 10.000001
+      m_AnimationSpeed: 10
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 2, y: -10, z: 0}
@@ -8780,7 +8793,7 @@ Tilemap:
       - {fileID: -1815461559, guid: c6a9042f900d44de38348eab4d09cd4a, type: 3}
       - {fileID: -574316034, guid: c6a9042f900d44de38348eab4d09cd4a, type: 3}
       - {fileID: 1284248302, guid: c6a9042f900d44de38348eab4d09cd4a, type: 3}
-      m_AnimationSpeed: 10.000001
+      m_AnimationSpeed: 10
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 0, y: -6, z: 0}
@@ -9788,7 +9801,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.4764151, b: 0.4764151, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -9829,6 +9842,9 @@ MonoBehaviour:
   player: {fileID: 594811435}
   isDragging: 0
   towerDraggingPrefab: {fileID: 2427592396818165457, guid: a0ad785347a7a40119ce441098d91727, type: 3}
+  requiredAmountOfWood: 40
+  icon: {fileID: 1703671071}
+  notReadyColor: {r: 1, g: 0.5184055, b: 0.4009434, a: 1}
 --- !u!1 &1737919939
 GameObject:
   m_ObjectHideFlags: 0

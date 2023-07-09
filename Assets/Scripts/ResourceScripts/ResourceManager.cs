@@ -32,15 +32,14 @@ public class ResourceManager : MonoBehaviour
     private int health;
 
     private int wood;
-
-    [SerializeField] private TextMeshProUGUI text;
-
+    
+    public static event Action<int> OnWoodChange;
+    
     public int Wood {
         get => wood;
         set {
             wood = value;
-            text.text = value.ToString();
-            Debug.Log("Amount of Wood in bank: " + value);
+            OnWoodChange?.Invoke(value);
         }
     }
     public Action onLoseEvent;
