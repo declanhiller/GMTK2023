@@ -12,7 +12,7 @@ namespace Towers {
         public Cell cell;
         public Map map;
 
-        public event Action OnZeroHealth;
+        public static event Action OnZeroHealth;
         public static int towersCount;
 
         private void Awake()

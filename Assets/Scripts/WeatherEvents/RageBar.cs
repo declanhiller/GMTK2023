@@ -82,16 +82,8 @@ namespace WeatherEvents {
                     RagePoints += forestDestroyRagePoints;
                     break;
                 case Map.MapEvent.PlacingWolf:
-                    RagePoints -= PlacingCostPoints;
-                    if (RagePoints <= 0) {
-                        if (HealthAttribute.towersCount > 0) {
-                            Debug.Log("You Lose!");
-                        }
-                    }
-
                     break;
                 case Map.MapEvent.RegrowTree:
-                    RagePoints -= regrowCostPoints;
                     break;
             }
         }

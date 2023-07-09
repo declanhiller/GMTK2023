@@ -9,6 +9,7 @@ namespace UI {
         
         private void Start() {
             ResourceManager.OnColonialLose += OnLose;
+            ResourceManager.OnNatureLose += OnLose;
             _gameOverObject.SetActive(false);
         }
 

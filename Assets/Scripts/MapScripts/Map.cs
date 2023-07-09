@@ -217,7 +217,7 @@ namespace MapScripts {
             BuildingPlaced,
             ForestDestroyed,
             PlacingWolf,
-            RegrowTree
+            RegrowTree,
         }
 
 

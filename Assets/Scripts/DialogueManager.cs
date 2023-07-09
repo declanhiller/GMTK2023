@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Enemies;
 using MapScripts;
 using TMPro;
+using Towers;
 using UnityEngine;
 using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
@@ -36,8 +37,13 @@ namespace DefaultNamespace {
             map.OnMapEvent += UpdateDialogueForMapEvent;
             _textbox = colonialTextbox;
             ResourceManager.OnStateChange += (c) => { _textbox = rageTextbox; };
+            HealthAttribute.OnZeroHealth += UpdateDialogueForNature;
             dialogueBox.SetActive(false);
             GenerateNewCounter();
+        }
+
+        private void UpdateDialogueForNature() {
+            UpdateNatureDialogue();
         }
 
         private void GenerateNewCounter() {
@@ -45,16 +51,20 @@ namespace DefaultNamespace {
         }
 
         private void UpdateDialogueForEnemyDeath(BasicEnemy obj) {
+            if (ResourceManager.instance._gameHasEnded) return;
             if (ResourceManager.instance.CurrentState == ResourceManager.State.human) {
                 UpdateColonialDialogue();
             }
         }
 
         private void UpdateDialogueForMapEvent(Map.MapEvent mapEvent) {
+            if (ResourceManager.instance._gameHasEnded) return;
             if (ResourceManager.instance.CurrentState == ResourceManager.State.human) {
                 UpdateColonialDialogue();
             }
         }
+        
+        
 
 
 

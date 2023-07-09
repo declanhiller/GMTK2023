@@ -14,6 +14,8 @@ public class ResourceManager : MonoBehaviour
         human, nature
     }
 
+    public bool _gameHasEnded;
+
     public State CurrentState {
         get => _currentState;
 
@@ -69,15 +71,23 @@ public class ResourceManager : MonoBehaviour
             if (value > 0) return;
             health = 0;
             Debug.Log("Colonial Lose");
-            OnColonialLose?.Invoke();
+            if (CurrentState == State.human) {
+                if (_gameHasEnded) return;
+                OnColonialLose?.Invoke();
+                _gameHasEnded = true;
+            }
+            else {
+                if (_gameHasEnded) return;
+                OnNatureWin?.Invoke();
+                _gameHasEnded = true;
+            }
+            
         }
     }
 
     public void NatureGameOver() {
+        if (_gameHasEnded) return;
         OnNatureLose?.Invoke();
-    }
-
-    public void NatureWin() {
-        OnNatureWin?.Invoke();
+        _gameHasEnded = true;
     }
 }
