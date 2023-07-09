@@ -10336,7 +10336,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 1875969642}
-  timeToStickAround: 10
+  timeToStickAround: 20
 --- !u!1 &766148391
 GameObject:
   m_ObjectHideFlags: 0
@@ -13178,7 +13178,7 @@ Tilemap:
       - {fileID: -1815461559, guid: c6a9042f900d44de38348eab4d09cd4a, type: 3}
       - {fileID: -574316034, guid: c6a9042f900d44de38348eab4d09cd4a, type: 3}
       - {fileID: 1284248302, guid: c6a9042f900d44de38348eab4d09cd4a, type: 3}
-      m_AnimationSpeed: 10.000001
+      m_AnimationSpeed: 10
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 2, y: -10, z: 0}
@@ -13977,7 +13977,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 3908dfa983259435ca66da1b16864645, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -14011,10 +14011,10 @@ RectTransform:
   m_Father: {fileID: 982179956}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 0}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
   m_AnchoredPosition: {x: 0, y: 20}
-  m_SizeDelta: {x: -400, y: 100}
+  m_SizeDelta: {x: 512, y: 136}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!1 &1439699966
 GameObject:
@@ -14375,7 +14375,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1555329059
 RectTransform:
   m_ObjectHideFlags: 0
@@ -14717,7 +14717,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: -40, y: -150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1655632499
 MonoBehaviour:
@@ -14739,17 +14739,27 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: This is where you will put the exposition
+  m_text: "The Great Tree, which nourishes the life of this valley, has been destroyed
+    by foreigners. For too long they have trampled upon this place, destroying the
+    forests and slaughtering its animal denizens. The suffering of the valley has
+    woken up its protector\u2014 the Goddess of this land. And her rage will not
+    be stopped until the cause has been all but swept away.\n\n[The Glory earned
+    by the land\u2019s invaders has become the Rage of the land itself.]\n\n[Spend
+    Rage to take back your land, and destroy the invaders. You may spawn beasts that
+    attack enemy structures. You may also grow forests on enemy structures, destroying
+    them.]\n\n[You have a limited amount of Rage\u2014 the only way to gain more
+    is to destroy turrets. If you run out of rage, you lose the game, so spend your
+    Rage wisely.]\n"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 0cce90dd6b06e41ec92f91ca1229edd0, type: 2}
+  m_sharedMaterial: {fileID: 3554740740220902267, guid: 0cce90dd6b06e41ec92f91ca1229edd0, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -15699,7 +15709,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1875969643
 RectTransform:
   m_ObjectHideFlags: 0
@@ -15716,10 +15726,10 @@ RectTransform:
   m_Father: {fileID: 982179956}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 500, y: 300}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1875969644
 MonoBehaviour:
@@ -15734,7 +15744,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -15817,7 +15827,12 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: New Text
+  m_text: 'Uniting the forest, with the help of the beasts and the trees, the Goddess
+    was able to successfully repel the invaders, and send them back home. Despite
+    the damage done to the lands, they were able to recover and regrow, and to resume
+    life as before. What had once been a verdant land of peace returned to a verdant
+    land of peace. Her rage sated and her land safe, the Goddess laid down to sleep
+    once more. '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -15844,8 +15859,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 18
-  m_fontSizeBase: 18
+  m_fontSize: 16
+  m_fontSizeBase: 16
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -16385,17 +16400,83 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   colonialDialogues:
-  - Test Dialogue
-  - Yippee
-  - Some more test
-  - We are going somewhere
-  natureDialogues: []
+  - "Things have been going smoothly. The trees and resources are abundant. We\u2019ve
+    already erected houses and defensive structures. This place unfortunately seems
+    to have some beastlike inhabitants, which we will have to take care of, it seems."
+  - 'Several of my men have been injured by the wolflike beasts. They took some effort
+    to kill, and seem to have some sort of magical origin. If even the animals are
+    this special, then the Great Tree  must have unimaginable power. '
+  - "We\u2019ve started construction of a new factory. When it\u2019s done, we should
+    be able to double our speed of progress. More land will be cleared and with luck,
+    we\u2019ll be able to create a bustling city."
+  - "We\u2019ve already stripped the area around our base of resources. The air is
+    filled with smoke and the sounds of metal clanging and people working. Ah, the
+    smell of progress. "
+  - "Looks like people have settled in quite well. The town square is finished, although
+    we may need more houses. We probably need more manpower\u2026 I should request
+    more men from the King."
+  - "I\u2019ve been away from home for months. Although, I suppose this is my new
+    home. Letters to the mainland are the only way I can still talk with my wife
+    and daughter. I hope to one day bring them here\u2026 That is why I must make
+    sure it is as safe as possible. We must exterminate the monsters that plague
+    this place."
+  - "I\u2019ve been away from home for months. Although, I suppose this is my new
+    home. Letters to the mainland are the only way I can still talk with my wife
+    and daughter. I hope to one day bring them here\u2026 That is why I must make
+    sure it is as safe as possible. We must exterminate the monsters that plague
+    this place."
+  - "How nice is it, that this land is unoccupied? This valley has everything we
+    need to grow\u2014 flowing rivers, an abundance of wood, and plenty of meat to
+    hunt. No inhabitants to chase away either. Too bad the pesky beasts keep on trying
+    to cause trouble. "
+  - "We\u2019ve located the mythical Great Tree. It\u2019s even better than we imagined\u2014
+    even the very leaves themselves seem to glow. The trunk was too solid for our
+    regular axes though. We must clear a path to it for our machines to arrive and
+    assist in cutting it down."
+  - "We\u2019ve located the mythical Great Tree. It\u2019s even better than we imagined\u2014
+    even the very leaves themselves seem to glow. The trunk was too solid for our
+    regular axes though. We must clear a path to it for our machines to arrive and
+    assist in cutting it down."
+  - "The attacks increased in intensity after we found the Tree. Perhaps the beasts
+    have been trying to defend it this whole time\u2026 All the more reason to harvest
+    it as quickly as possible. "
+  - These tree-harvesting machines are machines of destruction. The saws slice through
+    the wood like butter. The Great Tree stands no chance against us.
+  - "We are so close. Glory is almost within our grasp\u2026 I can feel it. The settlement
+    is prospering, our expansion rate is ever-growing, and we\u2019ve almost finished
+    making our way to the Tree. We\u2019re already a success, but once the magic
+    is in our hands? We\u2019ll be unstoppable."
+  natureDialogues:
+  - "Every stroke of the axe, every blade of grass trampled\u2026 I could feel it
+    all. I thought if I let them take what they needed, they would be happy. But
+    they never stopped. And so I must stop them."
+  - "The lands cannot weep but I weep for them. I detest taking lives\u2026 but when
+    its inhabitants cry out, who am I not to listen? "
+  - "My heart is heavy with grief for the innocent lives lost to these invaders.
+    That commander\u2026 The trees have heard him prattling on about his family.
+    But what about those that he is destroying?  "
+  - "A fawn approached me with a broken leg today. The poor thing was chased by those
+    invaders and barely managed to escape. My power may heal, but it cannot protect
+    everyone\u2026 That is why I must stop the disease at the source. "
+  - 'We must reclaim our land. As they were a hurricane that swept onto our land,
+    wreaking havoc throughout the valley, we must send one of equal force back.   '
+  - 'Have they no empathy for the inhabitants of this land? The plants and trees,
+    alive for millennia, only to be cut down by the hundred in a blink of the eye
+    by cold, cruel steel.  '
+  - "Justice, glory, good, evil\u2026 these are concepts native to humans. These
+    humans claim to practice them, preaching among themselves\u2026 but nature knows
+    no such thing. Nature knows nothing but its own home\u2014 and will protect it
+    at any cost."
+  - "The heart of our valley may have been ruthlessly cut down. They may chip at
+    our forests and flail around their weapons, but as long as our people are alive,
+    the valley\u2019s heart will continue to beat."
   startSceneDialogue: 
   map: {fileID: 330794330}
+  image: {fileID: 0}
   dialogueBox: {fileID: 1434487924}
   colonialTextbox: {fileID: 2047641600}
-  rageTextbox: {fileID: 0}
   isCutScene: 0
+  rageSprite: {fileID: 21300000, guid: 07024e28f07194b9d9dbc8804b1867c7, type: 3}
 --- !u!4 &2042151790
 Transform:
   m_ObjectHideFlags: 0
@@ -16471,15 +16552,15 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 0cce90dd6b06e41ec92f91ca1229edd0, type: 2}
+  m_sharedMaterial: {fileID: 3554740740220902267, guid: 0cce90dd6b06e41ec92f91ca1229edd0, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -16496,8 +16577,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 18
+  m_fontSizeBase: 18
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
