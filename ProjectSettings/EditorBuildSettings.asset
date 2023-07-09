@@ -9,9 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/CutScene.unity
     guid: 3fa2c3564356e2544845bba4a176c0bc
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 1
     path: Assets/Scenes/StartScreen.unity
     guid: 2978143f8143045b1aec1ced4e3ac0ea
+  - enabled: 1
+    path: Assets/Scenes/GameScreen.unity
+    guid: 6ada702f1c5484193bcbbc82fff7c766
   m_configObjects: {}
