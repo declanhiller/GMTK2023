@@ -31,7 +31,6 @@ namespace MapScripts {
         {
             if (isExcavated) return;
             Excavation();
-            map.PlayMouseClickSound();
         }
 
         public void onclickHurt()
@@ -44,6 +43,7 @@ namespace MapScripts {
             Debug.Log("Excavate");
             if (!HasNeighborExcavatedCell()) return;
             woodInForest--;
+            map.PlayMouseClickSound();
             float ratioOfWoodRemaining = (float) woodInForest / _startWoodAmount;
             map.ChangeTilesToMatchResourcesRemaining(this, ratioOfWoodRemaining);
             Debug.Log("Wood remaining in forest: " + woodInForest);
