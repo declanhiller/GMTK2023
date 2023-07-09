@@ -12,10 +12,19 @@ namespace Enemies {
 
         [SerializeField] private GameObject enemyPrefab;
         private bool _isAiControlled = true;
-        [SerializeField] private float minTime;
-        [SerializeField] private float maxTime;
-        [SerializeField] private float spawnRate;
 
+
+        [SerializeField] private float startMinTime;
+        [SerializeField] private float startMaxTime;
+
+        [SerializeField] private float endMinTime;
+        [SerializeField] private float endMaxTime;
+
+        [SerializeField] private float timeToReachEnd;
+        
+        private float _minTime;
+        private float _maxTime;
+        
         private bool _isActive = true;
 
         private void Awake()
@@ -29,17 +38,16 @@ namespace Enemies {
         }
 
         private IEnumerator RandomTick() {
-            if (!_isActive) yield break;
-            while (_isAiControlled) {
-                minTime = Mathf.Min(maxTime, minTime *= spawnRate);
-                yield return new WaitForSeconds(minTime);
+            Debug.Log("Start Coroutine");
+            while (_isAiControlled && _isActive) {
+                float seconds = Random.Range(_minTime, _maxTime);
+                yield return new WaitForSeconds(seconds);
                 AISpawn(TrackLayout.Instance.GetRandomTrack());
             }
         }
 
         private void AISpawn(Track track) {
             if (!_isActive) return;
-            Debug.Log("Spawn Enemy");
             GameObject enemyObj = Instantiate(enemyPrefab, track.StartPosition, Quaternion.identity);
             BasicEnemy enemy = enemyObj.GetComponent<BasicEnemy>();
             enemy.track = track;
@@ -51,10 +59,21 @@ namespace Enemies {
             {
                 case ResourceManager.State.human:
                     StartCoroutine(RandomTick());
+                    StartCoroutine(IncreaseSpawningRate());
                     break;
                 case ResourceManager.State.nature:
                     StopCoroutine(RandomTick());
                     break;
+            }
+        }
+
+        private IEnumerator IncreaseSpawningRate() {
+            float t = 0;
+            while (t <= 1) {
+                _minTime = Mathf.Lerp(startMinTime, endMinTime, t);
+                _maxTime = Mathf.Lerp(startMaxTime, endMaxTime, t);
+                t += Time.deltaTime / _maxTime;
+                yield return new WaitForEndOfFrame();
             }
         }
 

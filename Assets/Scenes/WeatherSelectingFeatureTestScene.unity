@@ -8770,9 +8770,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 4487627008063215977, guid: e56486f83c84c4f9bb9f06b9d5d6de4d, type: 3}
-  minTime: 1
-  maxTime: 3
-  spawnRate: 0
+  startMinTime: 8
+  startMaxTime: 11
+  endMinTime: 3
+  endMaxTime: 5
+  timeToReachEnd: 45
 --- !u!4 &298004911
 Transform:
   m_ObjectHideFlags: 0
