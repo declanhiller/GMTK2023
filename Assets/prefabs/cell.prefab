@@ -51,11 +51,9 @@ MonoBehaviour:
   isSpecialTree: 0
   isExcavated: 1
   isOccupiedByBuilding: 0
-<<<<<<< HEAD
   clickDamage: 100
   unit: {fileID: 0}
   woodInForest: 1
-=======
   woodInForest: 1
 --- !u!82 &7146230334621760665
 AudioSource:
@@ -153,4 +151,3 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
->>>>>>> 6213fe1fbfb2bb7570af225fecdf4f7703d0a9fb
