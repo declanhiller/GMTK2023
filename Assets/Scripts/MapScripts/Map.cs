@@ -155,7 +155,6 @@ namespace MapScripts {
                         currentCell?.onclickHurt();
                         break;
                 }
-                currentCell?.onClick();
             }
         }
 
