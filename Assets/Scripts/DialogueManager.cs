@@ -13,17 +13,25 @@ namespace DefaultNamespace {
 
         [SerializeField] private List<string> colonialDialogues;
         [SerializeField] private List<string> natureDialogues;
+        [SerializeField] private string startSceneDialogue;
         [SerializeField] private Map map;
 
         [SerializeField] private GameObject dialogueBox;
         [SerializeField] private TextMeshProUGUI colonialTextbox;
         [SerializeField] private TextMeshProUGUI rageTextbox;
+        [SerializeField] private bool isCutScene;
         private TextMeshProUGUI _textbox;
         private Coroutine _currentUpdatingText;
         private int _counterTillNextEvent;
 
 
         private void Start() {
+            if (isCutScene)
+            {
+                _textbox = dialogueBox.GetComponent<TextMeshProUGUI>();
+                LoadCutScene();
+                return;
+            }
             BasicEnemy.OnEnemyDeath += UpdateDialogueForEnemyDeath;
             map.OnMapEvent += UpdateDialogueForMapEvent;
             _textbox = colonialTextbox;
@@ -76,9 +84,22 @@ namespace DefaultNamespace {
             _currentUpdatingText = StartCoroutine(UpdateText());
         }
 
+        void LoadCutScene()
+        {
+            _textbox.text = startSceneDialogue;
+            StartCoroutine(EndCutScene());
+        }
+
         IEnumerator UpdateText() {
             yield return new WaitForSeconds(3f);
             dialogueBox.SetActive(false);
+        }
+
+        IEnumerator EndCutScene()
+        {
+            yield return new WaitForSeconds(3f);
+            dialogueBox.SetActive(false);
+            UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex + 1);
         }
 
     }

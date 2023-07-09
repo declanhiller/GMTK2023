@@ -24,6 +24,15 @@ namespace Towers {
         private void Start()
         {
             OnZeroHealth += rage.IncreaseRageBarForTowerDeath;
+            ResourceManager.OnColonialLose += DestroyItself;
+        }
+
+        private void OnDestroy() {
+            ResourceManager.OnColonialLose -= DestroyItself;
+        }
+
+        private void DestroyItself() {
+            Destroy(gameObject);
         }
 
         public float Health {

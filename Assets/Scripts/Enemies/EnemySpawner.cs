@@ -14,6 +14,9 @@ namespace Enemies {
         private bool _isAiControlled = true;
         [SerializeField] private float minTime;
         [SerializeField] private float maxTime;
+        [SerializeField] private float spawnRate;
+
+        private bool _isActive = true;
 
         private void Awake()
         {
@@ -22,17 +25,20 @@ namespace Enemies {
         }
         private void Start() {
             SpawnPattern(ResourceManager.instance.CurrentState);
+            ResourceManager.OnColonialLose += () => _isActive = false;
         }
 
         private IEnumerator RandomTick() {
+            if (!_isActive) yield break;
             while (_isAiControlled) {
-                float seconds = Random.Range(minTime, maxTime);
-                yield return new WaitForSeconds(seconds);
+                minTime = Mathf.Min(maxTime, minTime *= spawnRate);
+                yield return new WaitForSeconds(minTime);
                 AISpawn(TrackLayout.Instance.GetRandomTrack());
             }
         }
 
         private void AISpawn(Track track) {
+            if (!_isActive) return;
             Debug.Log("Spawn Enemy");
             GameObject enemyObj = Instantiate(enemyPrefab, track.StartPosition, Quaternion.identity);
             BasicEnemy enemy = enemyObj.GetComponent<BasicEnemy>();

@@ -40,7 +40,7 @@ namespace MapScripts {
         private Grid _grid;
         [SerializeField] private Tilemap _tilemap;
         [SerializeField] private Tilemap _hoverTilemap;
-        [FormerlySerializedAs("_forestAndBuildingTilemap")] [SerializeField] private Tilemap _forestTilemap;
+        [SerializeField] private Tilemap _forestTilemap;
         [SerializeField] public Tilemap buildingHoverTilemap;
 
         private ResourceManager _resourceManager;
@@ -48,17 +48,6 @@ namespace MapScripts {
 
         [SerializeField] public GameObject basicTowerPrefab;
 
-        [SerializeField] public GameObject clickSoundObject;
-        [SerializeField] public GameObject treeDestructionSoundObject;
-
-        public void PlayClickSound()
-        {
-            clickSoundObject.GetComponent<AudioSource>().Play();
-        }
-        public void PlayTreeDestructionSound()
-        {
-            treeDestructionSoundObject.GetComponent<AudioSource>().Play();
-        }
         private void Start() {
 
             _resourceManager = ResourceManager.instance;
@@ -234,6 +223,11 @@ namespace MapScripts {
 
         public void RemoveBuilding(Cell cell) {
             _forestTilemap.SetTile(cell.cellPosition, null);
+        }
+
+        public void PlayClickSound(Cell cell) {
+            mouseClickSound.transform.position = _grid.GetCellCenterWorld(cell.cellPosition);
+            mouseClickSound.Play();
         }
     }
 }
