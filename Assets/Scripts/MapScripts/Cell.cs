@@ -12,6 +12,8 @@ namespace MapScripts {
         public Vector3Int cellPosition;
         public Map map;
 
+        public int _startWoodAmount;
+
         //example variables
         public bool isExcavated;
         public bool isOccupiedByBuilding;
@@ -31,6 +33,8 @@ namespace MapScripts {
             Debug.Log("Excavate");
             if (!HasNeighborExcavatedCell()) return;
             woodInForest--;
+            float ratioOfWoodRemaining = (float) woodInForest / _startWoodAmount;
+            map.ChangeTilesToMatchResourcesRemaining(this, ratioOfWoodRemaining);
             Debug.Log("Wood remaining in forest: " + woodInForest);
             if(woodInForest <= 0)
             {

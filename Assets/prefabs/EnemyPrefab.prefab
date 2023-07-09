@@ -33,7 +33,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &5828418193304519420
 SpriteRenderer:
@@ -99,13 +99,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62b46a3eb2e94d99a934cd80722c9b63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 0.5
   attackDuration: 0.5
   damage: 20
   towerMask:
     serializedVersion: 2
     m_Bits: 128
   maxHealth: 50
+  placeCoolDown: 0
 --- !u!58 &1870762545548150184
 CircleCollider2D:
   m_ObjectHideFlags: 0
