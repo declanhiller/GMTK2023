@@ -20,8 +20,6 @@ namespace MapScripts {
         public bool isExcavated;
         public bool isOccupiedByBuilding;
 
-        public Action waypointActivate;
-
         private int foodAmount;
         [FormerlySerializedAs("woodAmount")] public int woodInForest;
 
