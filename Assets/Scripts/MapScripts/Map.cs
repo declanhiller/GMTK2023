@@ -40,13 +40,15 @@ namespace MapScripts {
         private Grid _grid;
         [SerializeField] private Tilemap _tilemap;
         [SerializeField] private Tilemap _hoverTilemap;
-        [FormerlySerializedAs("_forestAndBuildingTilemap")] [SerializeField] private Tilemap _forestTilemap;
+        [SerializeField] private Tilemap _forestTilemap;
         [SerializeField] public Tilemap buildingHoverTilemap;
 
         private ResourceManager _resourceManager;
         [SerializeField] public float woodRequirementForBasicBuilding; //eventually move this so it's in a SO
 
         [SerializeField] public GameObject basicTowerPrefab;
+
+        [SerializeField] private AudioSource mouseClickSound;
 
         private void Start() {
 
@@ -223,6 +225,11 @@ namespace MapScripts {
 
         public void RemoveBuilding(Cell cell) {
             _forestTilemap.SetTile(cell.cellPosition, null);
+        }
+
+        public void PlayClickSound(Cell cell) {
+            mouseClickSound.transform.position = _grid.GetCellCenterWorld(cell.cellPosition);
+            mouseClickSound.Play();
         }
     }
 }

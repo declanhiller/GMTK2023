@@ -35,7 +35,7 @@ namespace Player {
         private Coroutine _dragCoroutine;
 
         private ResourceManager _resourceManager;
-
+        
         private Vector3 _min;
         private Vector3 _max;
         
