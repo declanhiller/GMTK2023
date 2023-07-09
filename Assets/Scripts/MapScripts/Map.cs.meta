@@ -1,3 +1,29 @@
 fileFormatVersion: 2
 guid: 8f2fff5fb452414ca3a2f8c7a77dc4af
-timeCreated: 1688764753
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - hoverTile: {instanceID: 0}
+  - buildingTile: {instanceID: 0}
+  - animatedSawBuildingTile: {instanceID: 0}
+  - buildingErrorTile: {instanceID: 0}
+  - buildingOkTile: {instanceID: 0}
+  - waypoint: {instanceID: 0}
+  - treeTile: {instanceID: 0}
+  - aliveForestTile: {instanceID: 0}
+  - semiDeadForestTile: {instanceID: 0}
+  - deadForestTile: {instanceID: 0}
+  - _cell: {instanceID: 0}
+  - _tilemap: {instanceID: 0}
+  - _hoverTilemap: {instanceID: 0}
+  - _forestTilemap: {instanceID: 0}
+  - buildingHoverTilemap: {instanceID: 0}
+  - basicTowerPrefab: {instanceID: 0}
+  - clickSoundObject: {fileID: 2943773694551565470, guid: f46e824799d20f045a66ca4632ea7e7f, type: 3}
+  - treeDestructionSoundObject: {fileID: 8322003436178498540, guid: 702adb3fb54bd3344ade5436ee0cd319, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

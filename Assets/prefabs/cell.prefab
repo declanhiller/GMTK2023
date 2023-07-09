@@ -53,3 +53,11 @@ MonoBehaviour:
   clickDamage: 100
   unit: {fileID: 0}
   woodInForest: 1
+<<<<<<< HEAD
+<<<<<<< HEAD
+  mouseSoundObject: {fileID: 2943773694551565470, guid: f46e824799d20f045a66ca4632ea7e7f, type: 3}
+  treeSoundObject: {fileID: 8322003436178498540, guid: 702adb3fb54bd3344ade5436ee0cd319, type: 3}
+=======
+>>>>>>> d23a915c80828661905c10f7041edbed4fc2a023
+=======
+>>>>>>> d23a915c80828661905c10f7041edbed4fc2a023
