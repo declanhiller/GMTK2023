@@ -48,8 +48,17 @@ namespace MapScripts {
 
         [SerializeField] public GameObject basicTowerPrefab;
 
-        [SerializeField] private AudioSource mouseClickSound;
-        [SerializeField] private AudioSource treeDeathSound;
+        [SerializeField] private GameObject mouseClickSound;
+        [SerializeField] private GameObject treeDeathSound;
+
+        public void PlayMouseClickSound()
+        {
+            mouseClickSound.GetComponent<AudioSource>().Play();
+        }
+        public void PlayTreeDeathSound()
+        {
+            treeDeathSound.GetComponent<AudioSource>().Play();
+        }
 
         private void Start() {
 
@@ -226,15 +235,6 @@ namespace MapScripts {
 
         public void RemoveBuilding(Cell cell) {
             _forestTilemap.SetTile(cell.cellPosition, null);
-        }
-
-        public void PlayClickSound(Cell cell) {
-            mouseClickSound.transform.position = _grid.GetCellCenterWorld(cell.cellPosition);
-            mouseClickSound.Play();
-        }
-
-        public void PlayTreeDestructionSound() {
-            treeDeathSound.Play();
         }
     }
 }
