@@ -14,6 +14,7 @@ namespace Enemies {
         private bool _isAiControlled = true;
         [SerializeField] private float minTime;
         [SerializeField] private float maxTime;
+        [SerializeField] private float spawnRate;
 
         private bool _isActive = true;
 
@@ -30,8 +31,8 @@ namespace Enemies {
         private IEnumerator RandomTick() {
             if (!_isActive) yield break;
             while (_isAiControlled) {
-                float seconds = Random.Range(minTime, maxTime);
-                yield return new WaitForSeconds(seconds);
+                minTime = Mathf.Min(maxTime, minTime *= spawnRate);
+                yield return new WaitForSeconds(minTime);
                 AISpawn(TrackLayout.Instance.GetRandomTrack());
             }
         }
