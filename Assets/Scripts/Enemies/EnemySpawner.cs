@@ -21,7 +21,7 @@ namespace Enemies {
             else Destroy(gameObject);
         }
         private void Start() {
-            SpawnPattern(ResourceManager.instance.currentState);
+            SpawnPattern(ResourceManager.instance.CurrentState);
         }
 
         private IEnumerator RandomTick() {

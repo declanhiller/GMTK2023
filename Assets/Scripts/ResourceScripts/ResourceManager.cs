@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using System;
+using UnityEngine.Serialization;
 using WeatherEvents;
 
 public class ResourceManager : MonoBehaviour
@@ -13,7 +14,18 @@ public class ResourceManager : MonoBehaviour
         human, nature
     }
 
-    public State currentState;
+    public State CurrentState {
+        get => _currentState;
+
+        set {
+            _currentState = value;
+            OnStateChange?.Invoke(value);
+        }
+    }
+
+    private State _currentState;
+
+    private event Action<State> OnStateChange;
 
     public static ResourceManager instance { get; private set; }
 

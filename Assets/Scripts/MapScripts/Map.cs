@@ -22,7 +22,7 @@ namespace MapScripts {
         [SerializeField] private TileBase buildingErrorTile;
         [SerializeField] private TileBase buildingOkTile;
 
-        [SerializeField] private Sprite waypoint;
+        [SerializeField] private TileBase waypoint;
 
         [SerializeField] private TileBase aliveForestTile;
         [SerializeField] private TileBase semiDeadForestTile;
@@ -65,12 +65,9 @@ namespace MapScripts {
 
                         cell.isExcavated = !_forestTilemap.HasTile(localPos);
 
-                        if (!cell.isExcavated)
-                        {
-                            if(_forestTilemap.GetTile<Tile>(localPos).sprite == waypoint)
-                            {
-                                cell.gameObject.AddComponent<WayPoint>();
-                            }
+
+                        if (_forestTilemap.GetTile(localPos) == waypoint) {
+                            cell.isSpecialTree = true;
                         }
 
                         int range = Random.Range(50, 100);
@@ -173,7 +170,7 @@ namespace MapScripts {
             cell.isOccupiedByBuilding = true;
             // _forestTilemap.SetTile(cell.cellPosition, buildingTile);
             Instantiate(placingUnit, cell.transform.position, Quaternion.identity, cell.transform);
-            if(ResourceManager.instance.currentState == ResourceManager.State.nature)
+            if(ResourceManager.instance.CurrentState == ResourceManager.State.nature)
             {
                 OnMapEvent?.Invoke(MapEvent.PlacingWolf);
             } else OnMapEvent?.Invoke(MapEvent.BuildingPlaced);

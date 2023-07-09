@@ -14,6 +14,8 @@ namespace MapScripts {
 
         public int _startWoodAmount;
 
+        public bool isSpecialTree;
+
         //example variables
         public bool isExcavated;
         public bool isOccupiedByBuilding;
@@ -39,8 +41,10 @@ namespace MapScripts {
             if(woodInForest <= 0)
             {
                 isExcavated = true;
-                ResourceManager.instance.currentState++;
-                waypointActivate?.Invoke();
+                if (isSpecialTree) {
+                    Debug.Log("Change State");
+                    ResourceManager.instance.CurrentState = ResourceManager.State.nature;
+                }
                 map.DestroyForest(cellPosition);
             }
             

@@ -14,6 +14,6 @@ public class WayPoint : MonoBehaviour
     }
     public void ReverseRole()
     {
-        ResourceManager.instance.currentState = ResourceManager.State.nature;
+        ResourceManager.instance.CurrentState = ResourceManager.State.nature;
     }
 }

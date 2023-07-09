@@ -82,7 +82,7 @@ namespace Enemies {
             
             transform.Translate(speed * moveDirection * Time.deltaTime);
 
-            if(ResourceManager.instance.currentState == ResourceManager.State.human)
+            if(ResourceManager.instance.CurrentState == ResourceManager.State.human)
             {
                 if (Vector3.Distance(transform.position, track.EndPosition) < 0.1)
                 {

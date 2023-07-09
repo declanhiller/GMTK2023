@@ -83,7 +83,7 @@ namespace Player {
 
             if(spawnCoolDown < 0)
             {
-                switch (ResourceManager.instance.currentState)
+                switch (ResourceManager.instance.CurrentState)
                 {
                     case ResourceManager.State.human:
                         map.PlaceBuildingInCell(cell);

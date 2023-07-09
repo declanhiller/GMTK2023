@@ -43,7 +43,7 @@ namespace WeatherEvents {
         }
 
         private void IncreaseRageBarForAnimalDeath(BasicEnemy obj) {
-            if(ResourceManager.instance.currentState == ResourceManager.State.human)
+            if(ResourceManager.instance.CurrentState == ResourceManager.State.human)
             RagePoints += animalDestroyRagePoints;
         }
 
@@ -71,7 +71,7 @@ namespace WeatherEvents {
 
         public void IncreaseRageBarForTowerDeath()
         {
-            if(ResourceManager.instance.currentState == ResourceManager.State.nature)
+            if(ResourceManager.instance.CurrentState == ResourceManager.State.nature)
             {
                 RagePoints += towerDestroyRagePoints;
             }
