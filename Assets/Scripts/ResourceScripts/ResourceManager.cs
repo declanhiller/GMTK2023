@@ -33,10 +33,13 @@ public class ResourceManager : MonoBehaviour
 
     private int wood;
 
+    [SerializeField] private TextMeshProUGUI text;
+
     public int Wood {
         get => wood;
         set {
             wood = value;
+            text.text = value.ToString();
             Debug.Log("Amount of Wood in bank: " + value);
         }
     }
