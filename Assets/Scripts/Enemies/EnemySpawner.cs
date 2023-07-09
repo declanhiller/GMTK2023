@@ -72,7 +72,7 @@ namespace Enemies {
             while (t <= 1) {
                 _minTime = Mathf.Lerp(startMinTime, endMinTime, t);
                 _maxTime = Mathf.Lerp(startMaxTime, endMaxTime, t);
-                t += Time.deltaTime / _maxTime;
+                t += Time.deltaTime / timeToReachEnd;
                 yield return new WaitForEndOfFrame();
             }
         }
