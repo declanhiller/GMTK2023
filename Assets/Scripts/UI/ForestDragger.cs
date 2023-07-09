@@ -60,6 +60,7 @@ namespace UI {
             isDragging = false;
             if (map.HasCell(player._mousePosition, out Cell cell)) {
                 if (cell.isOccupiedByBuilding) {
+                    RageBar.Instance.RagePoints -= price;
                     map.ReplaceBuildingWithForest(cell);
                     StartCoroutine(Cooldown());
                     _isOnCooldown = true;

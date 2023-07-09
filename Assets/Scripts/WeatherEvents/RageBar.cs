@@ -36,23 +36,14 @@ namespace WeatherEvents {
 
                 if (ForestDragger.Instance != null && MonsterDragger.Instance != null) {
                     if (value < ForestDragger.Instance.price && value < MonsterDragger.Instance.price) {
-                        _countdownCoroutine = StartCoroutine(Countdown());
+                        ResourceManager.instance.NatureGameOver();
                     }
                 }
 
                 slider.value = value;
             }
         }
-
-        private IEnumerator Countdown() {
-            for (int i = 0; i < 5; i++) {
-                if (!(RagePoints < ForestDragger.Instance.price && RagePoints < MonsterDragger.Instance.price)) {
-                    yield break;
-                }
-            }
-
-            ResourceManager.instance.NatureGameOver();
-        }
+        
 
         [SerializeField] private Slider slider;
 

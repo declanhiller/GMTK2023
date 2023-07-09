@@ -88,6 +88,6 @@ public class ResourceManager : MonoBehaviour
     public void NatureGameOver() {
         if (_gameHasEnded) return;
         OnNatureLose?.Invoke();
-        _gameHasEnded = true;
+        _gameHasEnded = false; //game can still be won
     }
 }

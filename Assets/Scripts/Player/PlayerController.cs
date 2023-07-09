@@ -30,16 +30,16 @@ namespace Player {
         [SerializeField] private float clickCoolDown = 1;
 
         private float currentClickCD;
-        
+
         private Coroutine _dragCoroutine;
 
         private ResourceManager _resourceManager;
-        
+
         private Vector3 _min;
         private Vector3 _max;
 
         private bool _isActive = true;
-        
+
         private void Awake() {
             Keybinds = new Keybinds();
             Keybinds.Enable();
@@ -52,34 +52,34 @@ namespace Player {
 
             Keybinds.Player.RightClick.started += StartDrag;
             Keybinds.Player.RightClick.canceled += EndDrag;
-            
+
             _mainCamera = Camera.main;
 
-            Tuple<Vector2,Vector2> boundingPoints = map.FillOutBoundingPoints();
+            Tuple<Vector2, Vector2> boundingPoints = map.FillOutBoundingPoints();
             _min = boundingPoints.Item1;
             _max = boundingPoints.Item2;
 
             _resourceManager = ResourceManager.instance;
 
-            ResourceManager.OnColonialLose += () => { _isActive = false;};
+            ResourceManager.OnColonialLose += () => { _isActive = false; };
         }
 
         public void OnClick(InputAction.CallbackContext context) {
             if (!_isActive) return;
             if (currentClickCD > 0)
                 return;
+            if (_mainCamera == null) return;
             _mousePosition = _mainCamera.ScreenToWorldPoint(
                 Keybinds.Player.MousePosition.ReadValue<Vector2>());
             map.ClickCell(_mousePosition);
         }
-        
-        
+
+
         // Update is called once per frame
         void Update() {
             Hover();
-            
-            if(_resourceManager.CurrentState == ResourceManager.State.nature)
-            {
+
+            if (_resourceManager.CurrentState == ResourceManager.State.nature) {
                 currentClickCD -= Time.deltaTime;
             }
         }
@@ -99,16 +99,16 @@ namespace Player {
             map.PlaceUnitInCell(cell, enemyPrefab);
 
 
-                // switch (ResourceManager.instance.CurrentState)
-                // {
-                //     case ResourceManager.State.human:
-                //         map.PlaceBuildingInCell(cell);
-                //         break;
-                //     case ResourceManager.State.nature:
-                //         map.PlaceUnitInCell(cell, enemyPrefab);
-                //         break;
-                // }
-            
+            // switch (ResourceManager.instance.CurrentState)
+            // {
+            //     case ResourceManager.State.human:
+            //         map.PlaceBuildingInCell(cell);
+            //         break;
+            //     case ResourceManager.State.nature:
+            //         map.PlaceUnitInCell(cell, enemyPrefab);
+            //         break;
+            // }
+
         }
 
         private void StartDrag(InputAction.CallbackContext context) {
@@ -123,16 +123,16 @@ namespace Player {
             Vector2 startMousePosition = _mousePosition;
             Vector2 previousFrameMousePosition = _mousePosition;
             while (true) {
-            
+
                 Vector2 deltaMousePosition = previousFrameMousePosition - startMousePosition;
 
                 Vector3 proposedPosition = _mainCamera.transform.position - (Vector3) deltaMousePosition * sensitivity;
 
-                proposedPosition = new Vector3(Mathf.Clamp(proposedPosition.x, _min.x, _max.x), 
-                    Mathf.Clamp(proposedPosition.y, _min.y,_max.y), proposedPosition.z);
+                proposedPosition = new Vector3(Mathf.Clamp(proposedPosition.x, _min.x, _max.x),
+                    Mathf.Clamp(proposedPosition.y, _min.y, _max.y), proposedPosition.z);
 
                 _mainCamera.transform.position = proposedPosition;
-            
+
                 previousFrameMousePosition = _mousePosition;
                 yield return new WaitForEndOfFrame();
             }

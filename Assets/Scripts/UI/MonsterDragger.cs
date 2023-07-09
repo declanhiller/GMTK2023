@@ -61,6 +61,7 @@ namespace UI {
             if (map.HasCell(player._mousePosition, out Cell cell)) {
                 if (cell.isExcavated && !cell.isOccupiedByBuilding) {
                     player.PlaceUnit();
+                    RageBar.Instance.RagePoints -= price;
                     StartCoroutine(Cooldown());
                     _isOnCooldown = true;
                 }

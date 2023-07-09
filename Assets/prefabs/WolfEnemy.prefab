@@ -128,7 +128,7 @@ MonoBehaviour:
   towerMask:
     serializedVersion: 2
     m_Bits: 128
-  maxHealth: 50
+  maxHealth: 10
   placeCoolDown: 0
 --- !u!50 &453253150194485571
 Rigidbody2D:
