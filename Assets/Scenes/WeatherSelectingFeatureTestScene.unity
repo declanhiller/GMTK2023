@@ -14203,13 +14203,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20ca2ba043af4d48abfcd0cf4f553bdd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogues:
+  colonialDialogues:
   - Test Dialogue
   - Yippee
   - Some more test
   - We are going somewhere
+  natureDialogues: []
   map: {fileID: 330794330}
   dialogueBox: {fileID: 1434487924}
+  colonialTextbox: {fileID: 2047641600}
+  rageTextbox: {fileID: 0}
 --- !u!4 &2042151790
 Transform:
   m_ObjectHideFlags: 0
