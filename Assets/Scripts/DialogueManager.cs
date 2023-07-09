@@ -103,7 +103,7 @@ namespace DefaultNamespace {
         }
 
         IEnumerator UpdateText() {
-            yield return new WaitForSeconds(3f);
+            yield return new WaitForSeconds(7f);
             dialogueBox.SetActive(false);
         }
 
