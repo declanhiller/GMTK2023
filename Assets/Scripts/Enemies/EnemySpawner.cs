@@ -42,6 +42,7 @@ namespace Enemies {
             Debug.Log("Start Coroutine");
             while (_isAiControlled && _isActive) {
                 float seconds = Random.Range(_minTime, _maxTime);
+                Debug.Log(seconds);
                 yield return new WaitForSeconds(seconds);
                 AISpawn(TrackLayout.Instance.GetRandomTrack());
             }
