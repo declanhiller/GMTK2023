@@ -8624,6 +8624,7 @@ MonoBehaviour:
   enemyPrefab: {fileID: 4487627008063215977, guid: e56486f83c84c4f9bb9f06b9d5d6de4d, type: 3}
   minTime: 1
   maxTime: 3
+  spawnRate: 1.1
 --- !u!4 &298004911
 Transform:
   m_ObjectHideFlags: 0
@@ -13801,6 +13802,7 @@ MonoBehaviour:
   - We are going somewhere
   map: {fileID: 330794330}
   dialogueBox: {fileID: 1434487924}
+  isCutScene: 0
 --- !u!4 &2042151790
 Transform:
   m_ObjectHideFlags: 0

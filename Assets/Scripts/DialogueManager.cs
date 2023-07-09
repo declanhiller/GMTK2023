@@ -6,6 +6,7 @@ using MapScripts;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
+using UnityEngine.SceneManagement;
 
 namespace DefaultNamespace {
     public class DialogueManager : MonoBehaviour {
@@ -17,11 +18,18 @@ namespace DefaultNamespace {
         private TextMeshProUGUI _textBox;
         private Coroutine _currentUpdatingText;
 
+        [SerializeField] private bool isCutScene;
+
 
         private void Start() {
+            _textBox = dialogueBox.GetComponentInChildren<TextMeshProUGUI>();
+            if (isCutScene)
+            {
+                StartCutScene();
+                return;
+            }
             BasicEnemy.OnEnemyDeath += UpdateDialogueForEnemyDeath;
             map.OnMapEvent += UpdateDialogueForMapEvent;
-            _textBox = dialogueBox.GetComponentInChildren<TextMeshProUGUI>();
             dialogueBox.SetActive(false);
         }
 
@@ -48,6 +56,21 @@ namespace DefaultNamespace {
         IEnumerator UpdateText() {
             yield return new WaitForSeconds(3f);
             dialogueBox.SetActive(false);
+        }
+
+        IEnumerator EndStartScene()
+        {
+            yield return new WaitForSeconds(5f);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        }
+
+        public void StartCutScene()
+        {
+            dialogueBox.SetActive(true);
+            string dialogueString = dialogues[0];
+            _textBox.text = dialogueString;
+            _currentUpdatingText = StartCoroutine(EndStartScene());
+
         }
 
     }
