@@ -9105,7 +9105,7 @@ MonoBehaviour:
   buildingErrorTile: {fileID: 11400000, guid: 95021a3ac62d74cc78fe22d87fa98683, type: 2}
   buildingOkTile: {fileID: 11400000, guid: 9ec210a11112c46bfb8238f65524ecbf, type: 2}
   waypoint: {fileID: 11400000, guid: 2ed398b3522624677b8184b725241953, type: 2}
-  treeTile: {fileID: 0}
+  treeTile: {fileID: 11400000, guid: 534173a9864e44a55819fe1182217bfe, type: 2}
   aliveForestTile: {fileID: 11400000, guid: c3cf7c4058e894918a200c8bf37c62b4, type: 2}
   semiDeadForestTile: {fileID: 11400000, guid: 0ac1a2da6761f42cf94ecb4d00611c94, type: 2}
   deadForestTile: {fileID: 11400000, guid: 0ac1a2da6761f42cf94ecb4d00611c94, type: 2}

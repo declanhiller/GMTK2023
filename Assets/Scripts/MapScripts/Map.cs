@@ -12,7 +12,7 @@ using UI;
 
 namespace MapScripts {
     public class Map : MonoBehaviour {
-        
+
 
         [SerializeField] private TileBase hoverTile;
 
@@ -29,13 +29,13 @@ namespace MapScripts {
         [SerializeField] private TileBase aliveForestTile;
         [SerializeField] private TileBase semiDeadForestTile;
         [SerializeField] private TileBase deadForestTile;
-        
+
         public List<Cell> _cells;
 
         [SerializeField] private GameObject _cell;
 
         private Vector3Int _currentHoveringOverCellPosition;
-        
+
         public event Action<MapEvent> OnMapEvent; //probably use for the rage counter
 
         private Grid _grid;
@@ -43,7 +43,7 @@ namespace MapScripts {
         [SerializeField] private Tilemap _hoverTilemap;
         [SerializeField] private Tilemap _forestTilemap;
         [SerializeField] public Tilemap buildingHoverTilemap;
-
+        
         private ResourceManager _resourceManager;
         [SerializeField] public float woodRequirementForBasicBuilding; //eventually move this so it's in a SO
 
@@ -52,21 +52,20 @@ namespace MapScripts {
         [SerializeField] private AudioSource clickSound;
         [SerializeField] private AudioSource mainTreeDeathSound;
 
-        public void PlayMouseClickSound()
-        {
+        public void PlayMouseClickSound() {
             clickSound.Play();
         }
-        public void PlayTreeDeathSound()
-        {
+
+        public void PlayTreeDeathSound() {
             mainTreeDeathSound.Play();
         }
 
         private void Start() {
 
             _resourceManager = ResourceManager.instance;
-            
+
             _grid = GetComponent<Grid>();
-            
+
             _cells = new List<Cell>();
 
             for (int i = _tilemap.cellBounds.xMin; i < _tilemap.cellBounds.xMax; i++) {
@@ -93,7 +92,7 @@ namespace MapScripts {
                     }
                 }
             }
-            
+
         }
 
         public bool isValidSpotToBuild; //this is so spaghettied
@@ -106,10 +105,10 @@ namespace MapScripts {
                 buildingHoverTilemap.SetTile(_currentHoveringOverCellPosition, null);
                 _hoverTilemap.SetTile(_currentHoveringOverCellPosition, null);
 
-            
+
                 _currentHoveringOverCellPosition = gridPosition;
 
-            
+
                 if (!_tilemap.HasTile(gridPosition)) {
                     return;
                 }
@@ -132,23 +131,21 @@ namespace MapScripts {
 
                 _hoverTilemap.SetTile(_currentHoveringOverCellPosition, null);
 
-            
+
                 _currentHoveringOverCellPosition = gridPosition;
 
-            
+
                 if (!_tilemap.HasTile(gridPosition)) {
                     return;
                 }
+
                 _hoverTilemap.SetTile(gridPosition, hoverTile);
             }
         }
 
-        public void ClickCell(Vector3 position)
-        {
-            if (HasCell(position, out Cell currentCell))
-            {
-                switch (ResourceManager.instance.CurrentState)
-                {
+        public void ClickCell(Vector3 position) {
+            if (HasCell(position, out Cell currentCell)) {
+                switch (ResourceManager.instance.CurrentState) {
                     case ResourceManager.State.human:
                         currentCell?.onClick();
                         break;
@@ -187,8 +184,7 @@ namespace MapScripts {
             _forestTilemap.SetTile(cellPosition, null);
         }
 
-        public void RegrowForest(Vector3Int cellPosition)
-        {
+        public void RegrowForest(Vector3Int cellPosition) {
             OnMapEvent?.Invoke(MapEvent.RegrowTree);
             _forestTilemap.SetTile(cellPosition, treeTile);
         }
@@ -197,27 +193,31 @@ namespace MapScripts {
             // cell.isOccupiedByBuilding = true;
             // _forestTilemap.SetTile(cell.cellPosition, buildingTile);
             Instantiate(placingUnit, cell.transform.position, Quaternion.identity, cell.transform);
-            if(ResourceManager.instance.CurrentState == ResourceManager.State.nature)
-            {
+            if (ResourceManager.instance.CurrentState == ResourceManager.State.nature) {
                 OnMapEvent?.Invoke(MapEvent.PlacingWolf);
-            } else OnMapEvent?.Invoke(MapEvent.BuildingPlaced);
+            }
+            else OnMapEvent?.Invoke(MapEvent.BuildingPlaced);
         }
-        
+
         public void PlaceBuildingInCell(Cell cell) {
             cell.isOccupiedByBuilding = true;
             _forestTilemap.SetTile(cell.cellPosition, animatedSawBuildingTile);
-            GameObject basicTower = Instantiate(basicTowerPrefab, cell.transform.position, Quaternion.identity, cell.transform);
+            GameObject basicTower = Instantiate(basicTowerPrefab, cell.transform.position, Quaternion.identity,
+                cell.transform);
             ResourceManager.instance.Wood -= BuildingDragger.Instance.requiredAmountOfWood;
             HealthAttribute tower = basicTower.GetComponent<HealthAttribute>();
             tower.cell = cell;
             tower.map = this;
             cell.unit = tower;
             OnMapEvent?.Invoke(MapEvent.BuildingPlaced);
-            
+
         }
 
         public enum MapEvent {
-            BuildingPlaced, ForestDestroyed, PlacingWolf, RegrowTree
+            BuildingPlaced,
+            ForestDestroyed,
+            PlacingWolf,
+            RegrowTree
         }
 
 
@@ -225,7 +225,8 @@ namespace MapScripts {
             Debug.Log(ratio);
             if (ratio > 0.85f) {
                 _tilemap.SetTile(cell.cellPosition, aliveForestTile);
-            } else if (ratio > 0.6f) {
+            }
+            else if (ratio > 0.6f) {
                 _tilemap.SetTile(cell.cellPosition, semiDeadForestTile);
             }
             else {
@@ -235,6 +236,13 @@ namespace MapScripts {
 
         public void RemoveBuilding(Cell cell) {
             _forestTilemap.SetTile(cell.cellPosition, null);
+        }
+
+        public void ReplaceBuildingWithForest(Cell cell) {
+            _tilemap.SetTile(cell.cellPosition, aliveForestTile);
+            _forestTilemap.SetTile(cell.cellPosition, treeTile);
+            HealthAttribute healthAttribute = cell.unit;
+            Destroy(healthAttribute.gameObject);
         }
     }
 }

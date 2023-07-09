@@ -59,8 +59,8 @@ namespace UI {
             Destroy(_draggingObject);
             isDragging = false;
             if (map.HasCell(player._mousePosition, out Cell cell)) {
-                if (cell.isExcavated && !cell.isOccupiedByBuilding) {
-                    player.PlaceUnit();
+                if (cell.isOccupiedByBuilding) {
+                    map.ReplaceBuildingWithForest(cell);
                     StartCoroutine(Cooldown());
                     _isOnCooldown = true;
                 }
