@@ -20,6 +20,8 @@ namespace MapScripts {
         [SerializeField] private TileBase buildingErrorTile;
         [SerializeField] private TileBase buildingOkTile;
 
+        [SerializeField] private Sprite waypoint;
+
         [SerializeField] private TileBase aliveForestTile;
         [SerializeField] private TileBase semiDeadForestTile;
         [SerializeField] private TileBase deadForestTile;
@@ -60,6 +62,14 @@ namespace MapScripts {
                         cell.transform.position = _grid.GetCellCenterWorld(localPos);
 
                         cell.isExcavated = !_forestTilemap.HasTile(localPos);
+
+                        if (!cell.isExcavated)
+                        {
+                            if(_forestTilemap.GetTile<Tile>(localPos).sprite == waypoint)
+                            {
+                                cell.gameObject.AddComponent<WayPoint>();
+                            }
+                        }
 
                         int range = Random.Range(50, 100);
                         cell.woodInForest = range;
