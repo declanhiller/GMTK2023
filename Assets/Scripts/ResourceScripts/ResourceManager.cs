@@ -45,6 +45,8 @@ public class ResourceManager : MonoBehaviour
         }
     }
     public static event Action OnColonialLose;
+    public static event Action OnNatureLose;
+    public static event Action OnNatureWin;
     
 
 
@@ -69,5 +71,13 @@ public class ResourceManager : MonoBehaviour
             Debug.Log("Colonial Lose");
             OnColonialLose?.Invoke();
         }
+    }
+
+    public void NatureGameOver() {
+        OnNatureLose?.Invoke();
+    }
+
+    public void NatureWin() {
+        OnNatureWin?.Invoke();
     }
 }

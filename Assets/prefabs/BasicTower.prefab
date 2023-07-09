@@ -152,6 +152,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   collider: {fileID: 533661531905766724}
+  fireSound: {fileID: 2840915672955518475}
 --- !u!61 &3389472324103547031
 BoxCollider2D:
   m_ObjectHideFlags: 0

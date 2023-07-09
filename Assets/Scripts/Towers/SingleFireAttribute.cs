@@ -19,10 +19,9 @@ namespace Towers {
         private List<BasicEnemy> _enemiesInRange;
         private bool _isFiring;
 
-        private AudioSource fireSound;
+        [SerializeField] private AudioSource fireSound;
 
         private void Start() {
-            fireSound = GetComponent<AudioSource>();
             _enemiesInRange = new List<BasicEnemy>();
             float width = range * 1.5f;
             float height = range;
@@ -69,6 +68,9 @@ namespace Towers {
             _isFiring = true;
             while (_enemiesInRange.Count != 0) {
                 GameObject bullet = Instantiate(projectilePrefab, firePoint.position, Quaternion.identity);
+                if(_enemiesInRange[0] == null) {
+                    _enemiesInRange.RemoveAt(0);
+                }
                 StartCoroutine(BulletTravel(bullet, _enemiesInRange[0].transform));
                 yield return new WaitForSeconds(fireRate);
             }

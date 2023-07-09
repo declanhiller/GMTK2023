@@ -35,6 +35,7 @@ namespace Enemies {
         private void Start() {
             SpawnPattern(ResourceManager.instance.CurrentState);
             ResourceManager.OnColonialLose += () => _isActive = false;
+            ResourceManager.OnStateChange += state => _isActive = false;
         }
 
         private IEnumerator RandomTick() {
@@ -47,7 +48,6 @@ namespace Enemies {
         }
 
         private void AISpawn(Track track) {
-            if (!_isActive) return;
             GameObject enemyObj = Instantiate(enemyPrefab, track.StartPosition, Quaternion.identity);
             BasicEnemy enemy = enemyObj.GetComponent<BasicEnemy>();
             enemy.track = track;

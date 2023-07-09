@@ -69,7 +69,7 @@ namespace UI {
             isDragging = false;
             map.buildingHoverTilemap.ClearAllTiles();
             if (map.isValidSpotToBuild && map.HasCell(player._mousePosition, out Cell cell)) {
-                player.PlaceUnit();
+                map.PlaceBuildingInCell(cell);
             }
         
         }

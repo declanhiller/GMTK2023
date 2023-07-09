@@ -12,11 +12,11 @@ using UnityEngine.UI;
 using WeatherEvents;
 
 namespace UI {
-    public class MonsterDragger : MonoBehaviour, IPointerDownHandler, IPointerUpHandler {
+    public class ForestDragger : MonoBehaviour, IPointerDownHandler, IPointerUpHandler {
         [SerializeField] private Map map;
         [SerializeField] private PlayerController player;
     
-        public static MonsterDragger Instance { get; private set; }
+        public static ForestDragger Instance { get; private set; }
         
         public bool isDragging;
         [FormerlySerializedAs("towerDraggingPrefab")] [SerializeField] private GameObject draggingPrefab;

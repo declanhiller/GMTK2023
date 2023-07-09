@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using System.Threading;
 using Enemies;
 using MapScripts;
 using UnityEngine;
@@ -6,6 +8,7 @@ using UnityEngine.Events;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 using Towers;
+using UI;
 
 namespace WeatherEvents {
     public class RageBar : MonoBehaviour {
@@ -16,20 +19,39 @@ namespace WeatherEvents {
         [SerializeField] private float forestDestroyRagePoints;
         [SerializeField] private float animalDestroyRagePoints;
         [SerializeField] private float towerDestroyRagePoints;
-        
+
         [SerializeField] private float regrowCostPoints;
         [SerializeField] private float PlacingCostPoints;
 
 
         [SerializeField] private Map map;
 
+        private Coroutine _countdownCoroutine;
+
         public static RageBar Instance { get; private set; }
 
         public float RagePoints {
             get => slider.value;
             set {
+
+                if (ForestDragger.Instance != null && MonsterDragger.Instance != null) {
+                    if (value < ForestDragger.Instance.price && value < MonsterDragger.Instance.price) {
+                        _countdownCoroutine = StartCoroutine(Countdown());
+                    }
+                }
+
                 slider.value = value;
             }
+        }
+
+        private IEnumerator Countdown() {
+            for (int i = 0; i < 5; i++) {
+                if (!(RagePoints < ForestDragger.Instance.price && RagePoints < MonsterDragger.Instance.price)) {
+                    yield break;
+                }
+            }
+
+            ResourceManager.instance.NatureGameOver();
         }
 
         [SerializeField] private Slider slider;
@@ -47,8 +69,8 @@ namespace WeatherEvents {
         }
 
         private void IncreaseRageBarForAnimalDeath(BasicEnemy obj) {
-            if(ResourceManager.instance.CurrentState == ResourceManager.State.human)
-            RagePoints += animalDestroyRagePoints;
+            if (ResourceManager.instance.CurrentState == ResourceManager.State.human)
+                RagePoints += animalDestroyRagePoints;
         }
 
         private void ChangeRageBar(Map.MapEvent mapEvent) {
@@ -61,13 +83,12 @@ namespace WeatherEvents {
                     break;
                 case Map.MapEvent.PlacingWolf:
                     RagePoints -= PlacingCostPoints;
-                    if (RagePoints <= 0)
-                    {
-                        if (HealthAttribute.towersCount > 0)
-                        {
+                    if (RagePoints <= 0) {
+                        if (HealthAttribute.towersCount > 0) {
                             Debug.Log("You Lose!");
                         }
                     }
+
                     break;
                 case Map.MapEvent.RegrowTree:
                     RagePoints -= regrowCostPoints;
@@ -75,10 +96,8 @@ namespace WeatherEvents {
             }
         }
 
-        public void IncreaseRageBarForTowerDeath()
-        {
-            if(ResourceManager.instance.CurrentState == ResourceManager.State.nature)
-            {
+        public void IncreaseRageBarForTowerDeath() {
+            if (ResourceManager.instance.CurrentState == ResourceManager.State.nature) {
                 RagePoints += towerDestroyRagePoints;
             }
         }
