@@ -24,35 +24,19 @@ namespace MapScripts {
         [SerializeField] private float clickDamage;
 
         public HealthAttribute unit;
-
-<<<<<<< HEAD
-<<<<<<< HEAD
+        
         [FormerlySerializedAs("woodAmount")] public int woodInForest;
 
         public void Awake()
         {
 
         }
-=======
-        public int woodInForest;
->>>>>>> d23a915c80828661905c10f7041edbed4fc2a023
-=======
-        public int woodInForest;
->>>>>>> d23a915c80828661905c10f7041edbed4fc2a023
 
         public void onClick()
         {
             if (isExcavated) return;
             Excavation();
-<<<<<<< HEAD
-<<<<<<< HEAD
-            map.PlayClickSound();
-=======
             map.PlayClickSound(this);
->>>>>>> d23a915c80828661905c10f7041edbed4fc2a023
-=======
-            map.PlayClickSound(this);
->>>>>>> d23a915c80828661905c10f7041edbed4fc2a023
         }
 
         public void onclickHurt()

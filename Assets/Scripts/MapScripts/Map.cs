@@ -49,6 +49,7 @@ namespace MapScripts {
         [SerializeField] public GameObject basicTowerPrefab;
 
         [SerializeField] private AudioSource mouseClickSound;
+        [SerializeField] private AudioSource treeDeathSound;
 
         private void Start() {
 
@@ -230,6 +231,10 @@ namespace MapScripts {
         public void PlayClickSound(Cell cell) {
             mouseClickSound.transform.position = _grid.GetCellCenterWorld(cell.cellPosition);
             mouseClickSound.Play();
+        }
+
+        public void PlayTreeDestructionSound() {
+            treeDeathSound.Play();
         }
     }
 }
