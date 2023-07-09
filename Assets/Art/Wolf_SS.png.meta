@@ -1,12 +1,12 @@
 fileFormatVersion: 2
-guid: a0cd56a83ff9641ee9d4b8969c7d8310
+guid: b86710b3d02c04990a5e7d74ef20deb4
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
   serializedVersion: 12
   mipmaps:
     mipMapMode: 0
-    enableMipMap: 0
+    enableMipMap: 1
     sRGBTexture: 1
     linearTexture: 0
     fadeOut: 0
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 512
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -123,13 +123,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Saw_SS_0
+      name: Wolf_SS_0
       rect:
         serializedVersion: 2
-        x: 2
-        y: 33
-        width: 296
-        height: 209
+        x: 0
+        y: 2388
+        width: 1882
+        height: 1708
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -137,20 +137,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8bf56a1c83b5141b9a460e041d51e769
-      internalID: 2030107108
+      spriteID: 4804f2dde7f4a45ac99d6f387a266ee2
+      internalID: -1770971167
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Saw_SS_1
+      name: Wolf_SS_1
       rect:
         serializedVersion: 2
-        x: 311
-        y: 26
-        width: 302
-        height: 219
+        x: 1882
+        y: 2388
+        width: 1882
+        height: 1708
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -158,20 +158,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 928ee192ba5f140fba1d170c227a4951
-      internalID: -126206325
+      spriteID: 0d979dc9591b64959906a67cc107c8c1
+      internalID: 453392740
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Saw_SS_2
+      name: Wolf_SS_2
       rect:
         serializedVersion: 2
-        x: 618
-        y: 19
-        width: 300
-        height: 231
+        x: 0
+        y: 680
+        width: 1882
+        height: 1708
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -179,8 +179,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 49dc34bd3dd8a4e8f8fbe268dc1f0674
-      internalID: -1975012135
+      spriteID: 6c379f2fb7965470781d7b6b4279b668
+      internalID: -1708453542
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Wolf_SS_3
+      rect:
+        serializedVersion: 2
+        x: 1882
+        y: 680
+        width: 1882
+        height: 1708
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8f484735a1e0647d7873cb83d67270d4
+      internalID: 1693740948
       vertices: []
       indices: 
       edges: []
@@ -196,9 +217,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Saw_SS_0: 2030107108
-      Saw_SS_1: -126206325
-      Saw_SS_2: -1975012135
+      Wolf_SS_0: -1770971167
+      Wolf_SS_1: 453392740
+      Wolf_SS_2: -1708453542
+      Wolf_SS_3: 1693740948
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
