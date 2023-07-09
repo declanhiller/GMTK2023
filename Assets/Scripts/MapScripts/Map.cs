@@ -17,6 +17,8 @@ namespace MapScripts {
 
         [SerializeField] private TileBase buildingTile;
 
+        [SerializeField] private AnimatedTile animatedSawBuildingTile;
+
         [SerializeField] private TileBase buildingErrorTile;
         [SerializeField] private TileBase buildingOkTile;
 
@@ -169,7 +171,7 @@ namespace MapScripts {
         
         public void PlaceBuildingInCell(Cell cell) {
             cell.isOccupiedByBuilding = true;
-            _forestTilemap.SetTile(cell.cellPosition, buildingTile);
+            _forestTilemap.SetTile(cell.cellPosition, animatedSawBuildingTile);
             GameObject basicTower = Instantiate(basicTowerPrefab, cell.transform.position, Quaternion.identity, cell.transform);
             OnMapEvent?.Invoke(MapEvent.BuildingPlaced);
             
