@@ -1,5 +1,6 @@
 
 using System;
+using MapScripts;
 using UnityEngine;
 using UnityEngine.Serialization;
 using WeatherEvents;
@@ -8,13 +9,11 @@ namespace Towers {
     public class HealthAttribute : MonoBehaviour {
         [SerializeField] private float health;
         private RageBar rage;
+        public Cell cell;
+        public Map map;
 
         public event Action OnZeroHealth;
         public static int towersCount;
-
-        public HealthAttribute(float health) {
-            this.health = health;
-        }
 
         private void Awake()
         {
@@ -32,6 +31,7 @@ namespace Towers {
             set {
                 health = value;
                 if(value <= 0) {
+                    map.RemoveBuilding(cell);
                     OnZeroHealth?.Invoke();
                     Destroy(gameObject, 0.05f);
                     towersCount--;

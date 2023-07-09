@@ -18,6 +18,8 @@ namespace MapScripts {
         public bool isExcavated;
         public bool isOccupiedByBuilding;
 
+        public Action waypointActivate;
+
         private int foodAmount;
         [FormerlySerializedAs("woodAmount")] public int woodInForest;
 
@@ -37,7 +39,8 @@ namespace MapScripts {
             if(woodInForest <= 0)
             {
                 isExcavated = true;
-                
+                ResourceManager.instance.currentState++;
+                waypointActivate?.Invoke();
                 map.DestroyForest(cellPosition);
             }
             

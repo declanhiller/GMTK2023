@@ -17,8 +17,12 @@ namespace MapScripts {
 
         [SerializeField] private TileBase buildingTile;
 
+        [SerializeField] private AnimatedTile animatedSawBuildingTile;
+
         [SerializeField] private TileBase buildingErrorTile;
         [SerializeField] private TileBase buildingOkTile;
+
+        [SerializeField] private Sprite waypoint;
 
         [SerializeField] private TileBase aliveForestTile;
         [SerializeField] private TileBase semiDeadForestTile;
@@ -41,6 +45,8 @@ namespace MapScripts {
         private ResourceManager _resourceManager;
         [SerializeField] private float woodRequirementForBasicBuilding; //eventually move this so it's in a SO
 
+        [SerializeField] public GameObject basicTowerPrefab;
+
         private void Start() {
 
             _resourceManager = ResourceManager.instance;
@@ -58,6 +64,14 @@ namespace MapScripts {
                         cell.transform.position = _grid.GetCellCenterWorld(localPos);
 
                         cell.isExcavated = !_forestTilemap.HasTile(localPos);
+
+                        if (!cell.isExcavated)
+                        {
+                            if(_forestTilemap.GetTile<Tile>(localPos).sprite == waypoint)
+                            {
+                                cell.gameObject.AddComponent<WayPoint>();
+                            }
+                        }
 
                         int range = Random.Range(50, 100);
                         cell.woodInForest = range;
@@ -157,12 +171,23 @@ namespace MapScripts {
         public void PlaceUnitInCell(Cell cell, GameObject placingUnit) {
             if (_resourceManager.Wood < woodRequirementForBasicBuilding) return;
             cell.isOccupiedByBuilding = true;
-            _forestTilemap.SetTile(cell.cellPosition, buildingTile);
+            // _forestTilemap.SetTile(cell.cellPosition, buildingTile);
             Instantiate(placingUnit, cell.transform.position, Quaternion.identity, cell.transform);
             if(ResourceManager.instance.currentState == ResourceManager.State.nature)
             {
                 OnMapEvent?.Invoke(MapEvent.PlacingWolf);
             } else OnMapEvent?.Invoke(MapEvent.BuildingPlaced);
+        }
+        
+        public void PlaceBuildingInCell(Cell cell) {
+            cell.isOccupiedByBuilding = true;
+            _forestTilemap.SetTile(cell.cellPosition, animatedSawBuildingTile);
+            GameObject basicTower = Instantiate(basicTowerPrefab, cell.transform.position, Quaternion.identity, cell.transform);
+            HealthAttribute tower = basicTower.GetComponent<HealthAttribute>();
+            tower.cell = cell;
+            tower.map = this;
+            OnMapEvent?.Invoke(MapEvent.BuildingPlaced);
+            
         }
 
         public enum MapEvent {
@@ -180,6 +205,10 @@ namespace MapScripts {
             else {
                 _tilemap.SetTile(cell.cellPosition, deadForestTile);
             }
+        }
+
+        public void RemoveBuilding(Cell cell) {
+            _forestTilemap.SetTile(cell.cellPosition, null);
         }
     }
 }

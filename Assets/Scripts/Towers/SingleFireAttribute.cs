@@ -60,14 +60,17 @@ namespace Towers {
                 target.transform.position);
             float timer = 0;
             while (timer <= 1) {
+                if (target == null) yield break;
                 Vector3 bulletPosition = Vector3.Lerp(startPosition, target.transform.position, timer);
                 bullet.transform.position = bulletPosition;
                 timer += Time.deltaTime * actualSpeed;
                 yield return new WaitForEndOfFrame();
             }
 
-            BasicEnemy basicEnemy = target.GetComponent<BasicEnemy>();
-            basicEnemy.Health -= damage;
+            if (target != null) {
+                BasicEnemy basicEnemy = target.GetComponent<BasicEnemy>();
+                basicEnemy.Health -= damage;
+            }
             Destroy(bullet);
         }
 
