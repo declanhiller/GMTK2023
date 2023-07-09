@@ -48,16 +48,16 @@ namespace MapScripts {
 
         [SerializeField] public GameObject basicTowerPrefab;
 
-        [SerializeField] private GameObject mouseClickSound;
-        [SerializeField] private GameObject treeDeathSound;
+        [SerializeField] private AudioSource clickSound;
+        [SerializeField] private AudioSource mainTreeDeathSound;
 
         public void PlayMouseClickSound()
         {
-            mouseClickSound.GetComponent<AudioSource>().Play();
+            clickSound.Play();
         }
         public void PlayTreeDeathSound()
         {
-            treeDeathSound.GetComponent<AudioSource>().Play();
+            mainTreeDeathSound.Play();
         }
 
         private void Start() {
