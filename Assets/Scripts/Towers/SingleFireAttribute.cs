@@ -12,7 +12,7 @@ namespace Towers {
         [SerializeField] private float range;
         [SerializeField] private float damage;
         [SerializeField] private Transform firePoint;
-        [FormerlySerializedAs("projectile")] [SerializeField] private GameObject projectilePrefab;
+        [SerializeField] private GameObject projectilePrefab;
         [SerializeField] private LayerMask _enemyLayerMask;
         [SerializeField] private BoxCollider2D collider;
 

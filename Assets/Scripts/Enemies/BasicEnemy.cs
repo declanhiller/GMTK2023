@@ -11,7 +11,7 @@ namespace Enemies {
         public static event Action<BasicEnemy> OnEnemyDeath;
         
         public float speed;
-        [FormerlySerializedAs("attackSpeed")] public float attackDuration;
+        public float attackDuration;
         public float damage;
 
         [SerializeField] private LayerMask towerMask;

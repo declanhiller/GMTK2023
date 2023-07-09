@@ -25,20 +25,13 @@ namespace MapScripts {
 
         public HealthAttribute unit;
 
-        [FormerlySerializedAs("woodAmount")] public int woodInForest;
-
-        private AudioSource mouseClickSound;
-
-        public void Awake()
-        {
-            mouseClickSound = GetComponent<AudioSource>();
-        }
+        public int woodInForest;
 
         public void onClick()
         {
             if (isExcavated) return;
             Excavation();
-            mouseClickSound.Play();
+            map.PlayClickSound(this);
         }
 
         public void onclickHurt()

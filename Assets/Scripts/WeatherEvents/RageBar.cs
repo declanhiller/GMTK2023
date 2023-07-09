@@ -32,7 +32,7 @@ namespace WeatherEvents {
             }
         }
 
-        [FormerlySerializedAs("_slider")] [SerializeField] private Slider slider;
+        [SerializeField] private Slider slider;
         
         
         
