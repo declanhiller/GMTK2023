@@ -25,11 +25,30 @@ namespace Towers {
             float height = range;
             collider.size = new Vector2(width, height);
             Debug.Log(collider.size);
+            RefreshNewEnemies();
+
+            BasicEnemy.OnEnemyDeath += RemoveEnemyFromList;
+
+        }
+
+        void RefreshNewEnemies() {
+            Collider2D[] overlapBoxAll = Physics2D.OverlapBoxAll((Vector2) transform.position + collider.offset, collider.size, 0,
+                _enemyLayerMask);
+            foreach (Collider2D collider in overlapBoxAll) {
+                _enemiesInRange.Add(collider.GetComponent<BasicEnemy>());
+            }
+        }
+
+        private void RemoveEnemyFromList(BasicEnemy obj) {
+            _enemiesInRange.Remove(obj);
         }
 
 
         private void Update() {
-            if (_enemiesInRange.Count == 0) return;
+            if (_enemiesInRange.Count == 0) {
+                RefreshNewEnemies();
+                if (_enemiesInRange.Count == 0) return;
+            };
             if (_isFiring) return;
             StartCoroutine(Fire());
         }
@@ -60,7 +79,10 @@ namespace Towers {
                 target.transform.position);
             float timer = 0;
             while (timer <= 1) {
-                if (target == null) yield break;
+                if (target == null) {
+                    Destroy(bullet);
+                    yield break;
+                }
                 Vector3 bulletPosition = Vector3.Lerp(startPosition, target.transform.position, timer);
                 bullet.transform.position = bulletPosition;
                 timer += Time.deltaTime * actualSpeed;
