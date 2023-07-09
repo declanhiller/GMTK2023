@@ -23,7 +23,7 @@ namespace WeatherEvents {
 
         [SerializeField] private Map map;
 
-
+        public static RageBar Instance { get; private set; }
 
         public float RagePoints {
             get => slider.value;
@@ -33,9 +33,12 @@ namespace WeatherEvents {
         }
 
         [SerializeField] private Slider slider;
-        
-        
-        
+
+        private void Awake() {
+            if (Instance == null) Instance = this;
+            else Destroy(gameObject);
+        }
+
         private void Start() {
             slider.maxValue = maxNumberOfRagePoints;
             slider.value = 0;

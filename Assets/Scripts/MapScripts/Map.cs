@@ -8,6 +8,7 @@ using UnityEngine.Serialization;
 using UnityEngine.Tilemaps;
 using Random = UnityEngine.Random;
 using Enemies;
+using UI;
 
 namespace MapScripts {
     public class Map : MonoBehaviour {

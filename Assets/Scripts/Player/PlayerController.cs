@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using Enemies;
 using Towers;
+using UI;
 
 
 // Simple player controller just for testing... will probably need to be refactored... maybe
@@ -29,9 +30,7 @@ namespace Player {
         [SerializeField] private float clickCoolDown = 1;
 
         private float currentClickCD;
-
-        private float spawnCoolDown;
-
+        
         private Coroutine _dragCoroutine;
 
         private ResourceManager _resourceManager;
@@ -78,7 +77,6 @@ namespace Player {
         // Update is called once per frame
         void Update() {
             Hover();
-            spawnCoolDown -= Time.deltaTime;
             
             if(_resourceManager.CurrentState == ResourceManager.State.nature)
             {
@@ -98,20 +96,19 @@ namespace Player {
             if (!cell.isExcavated) return;
             if (cell.isOccupiedByBuilding) return;
 
-            if(spawnCoolDown < 0)
-            {
-                switch (ResourceManager.instance.CurrentState)
-                {
-                    case ResourceManager.State.human:
-                        map.PlaceBuildingInCell(cell);
-                        spawnCoolDown = 0;
-                        break;
-                    case ResourceManager.State.nature:
-                        map.PlaceUnitInCell(cell, enemyPrefab);
-                        spawnCoolDown = enemyPrefab.GetComponent<BasicEnemy>().placeCoolDown;
-                        break;
-                }
-            }
+            map.PlaceUnitInCell(cell, enemyPrefab);
+
+
+                // switch (ResourceManager.instance.CurrentState)
+                // {
+                //     case ResourceManager.State.human:
+                //         map.PlaceBuildingInCell(cell);
+                //         break;
+                //     case ResourceManager.State.nature:
+                //         map.PlaceUnitInCell(cell, enemyPrefab);
+                //         break;
+                // }
+            
         }
 
         private void StartDrag(InputAction.CallbackContext context) {
