@@ -30,8 +30,7 @@ namespace UI {
 
         [SerializeField] private Color selectedColor;
 
-        private bool _isSelected;
-        
+        private bool _isOnCooldown;
 
         private void Awake() {
             if (Instance == null) Instance = this;
@@ -44,6 +43,7 @@ namespace UI {
         }
 
         public void OnPointerDown(PointerEventData eventData) {
+            if (_isOnCooldown) return;
             if (eventData.button != PointerEventData.InputButton.Left) return;
             _draggingObject = Instantiate(draggingPrefab);
             _draggingObject.transform.position = player._mousePosition;
@@ -51,27 +51,35 @@ namespace UI {
         }
 
         public void OnPointerUp(PointerEventData eventData) {
+            if(_isOnCooldown) return;
             if (eventData.button != PointerEventData.InputButton.Left) return;
             Destroy(_draggingObject);
             isDragging = false;
             if (map.HasCell(player._mousePosition, out Cell cell)) {
-                player.PlaceUnit();
+                if (cell.isExcavated && !cell.isOccupiedByBuilding) {
+                    player.PlaceUnit();
+                    StartCoroutine(Cooldown());
+                    _isOnCooldown = true;
+                }
             }
         
         }
 
         IEnumerator Cooldown() {
 
-            float timer = 0;
-            while (timer <= cooldown) {
+            float timer = cooldown;
+            while (timer > 0) {
 
-                timer += Time.deltaTime;
 
                 int displayedAsTime = (int) timer + 1;
                 displayedTimer.text = displayedAsTime.ToString();
-                
+                timer -= Time.deltaTime;
+
                 yield return new WaitForEndOfFrame();
             }
+
+            displayedTimer.text = "";
+            _isOnCooldown = false;
         }
 
     }

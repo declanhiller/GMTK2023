@@ -194,7 +194,7 @@ namespace MapScripts {
         }
 
         public void PlaceUnitInCell(Cell cell, GameObject placingUnit) {
-            cell.isOccupiedByBuilding = true;
+            // cell.isOccupiedByBuilding = true;
             // _forestTilemap.SetTile(cell.cellPosition, buildingTile);
             Instantiate(placingUnit, cell.transform.position, Quaternion.identity, cell.transform);
             if(ResourceManager.instance.CurrentState == ResourceManager.State.nature)
